@@ -24,7 +24,7 @@ xcrun stapler validate "$DIST/Keel.dmg"
 WORK="$(mktemp -d)"
 trap 'rm -r "$WORK"' EXIT
 git -C "$WORK" init -q -b gh-pages pub
-rsync -a --delete --exclude README.md "$ROOT/site/" "$WORK/pub/"
+rsync -a --delete --exclude .git --exclude README.md "$ROOT/site/" "$WORK/pub/"
 touch "$WORK/pub/.nojekyll"
 (
   cd "$WORK/pub"
