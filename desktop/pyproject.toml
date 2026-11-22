@@ -1,0 +1,27 @@
+[project]
+name = "keel-desktop"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "pf",
+    "pyinstaller>=6.19,<7",
+    "Pillow>=11",
+]
+
+[project.scripts]
+keel-engine = "ledger_app.engine:main"
+
+[tool.uv.sources]
+pf = { path = "../backend", editable = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["ledger_app"]

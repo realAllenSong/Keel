@@ -1,0 +1,39 @@
+# --- Private financial data: NEVER commit ---
+raw/
+data/
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.duckdb
+config/*.local.yaml
+.env
+.env.*
+!.env.example
+
+# Fixtures are synthetic and allowed
+!fixtures/**
+
+# --- Python ---
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+.hypothesis/
+*.egg-info/
+
+# --- Node / Next.js ---
+node_modules/
+.next/
+.next-desktop/
+dist/
+desktop/build/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# --- OS / editor ---
+.DS_Store
+.idea/
+.vscode/

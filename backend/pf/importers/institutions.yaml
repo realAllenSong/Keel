@@ -1,0 +1,235 @@
+- id: chase
+  name: Chase
+  kind: bank
+  importers: [chase_checking, chase_credit]
+  export_url: https://secure.chase.com/
+  steps_verified: false
+  steps:
+    - 在电脑上登录 chase.com，点进要导出的账户。支票账户和信用卡各导一次。
+    - 点交易列表上方的下载图标（Download account activity）。
+    - 文件类型选 CSV（Spreadsheet），时间范围选能选的最长，或 All transactions。
+    - 点 Download，文件会存进「下载」文件夹。
+  supported: true
+  note: 要的是交易明细 CSV，不是 PDF 月结单。网页通常只能导出最近一段时间，之后每月导一次就能接上。
+  en:
+    steps:
+      - Sign in at chase.com on a computer and open the account. Do checking and each credit card separately.
+      - Click the download icon above the transactions (Download account activity).
+      - Choose CSV (Spreadsheet) and the longest date range available, or All transactions.
+      - Click Download; the file goes to your Downloads folder.
+    note: You need the transaction CSV, not the PDF statement. The site usually only exports recent activity, so download once a month after this to stay continuous.
+- id: amex
+  name: American Express
+  kind: card
+  importers: [amex]
+  export_url: https://www.americanexpress.com/
+  steps_verified: false
+  steps:
+    - 登录 americanexpress.com，打开 Statements & Activity。
+    - 选时间范围：按年，或自定义日期。
+    - 点下载，格式选 CSV；如果有「包含全部交易详情」，勾上。
+    - 有多张卡（含附属卡）时，每张卡分开导出。
+  supported: true
+  note: Amex 可以导出最近的交易和最近 6 期账单。消费是正数、还款是负数，Keel 已经按这个处理。
+  en:
+    steps:
+      - Sign in at americanexpress.com and open Statements & Activity.
+      - 'Choose a date range: by year, or custom dates.'
+      - Click download and choose CSV; tick "include all transaction details" if offered.
+      - Export each card (including additional cards) separately.
+    note: Amex exports recent transactions and the last 6 statements. Charges are positive and payments negative; Keel already handles that.
+- id: bofa
+  name: Bank of America
+  kind: bank
+  importers: [bofa_checking, bofa_credit]
+  export_url: https://www.bankofamerica.com/online-banking/sign-in/
+  steps_verified: false
+  steps:
+    - 登录 bankofamerica.com，进入要导出的账户。
+    - 点交易列表上方的 Download。
+    - 格式选 Microsoft Excel / CSV，再选时间范围。
+    - 下载到「下载」文件夹。
+  supported: true
+  note: 不同账户分别导出。
+  en:
+    steps:
+      - Sign in at bankofamerica.com and open the account.
+      - Click Download above the transactions.
+      - Choose Microsoft Excel / CSV, then the date range.
+      - Save it to your Downloads folder.
+    note: Export each account separately.
+- id: schwab
+  name: Charles Schwab
+  kind: broker
+  importers: [schwab]
+  export_url: https://client.schwab.com/
+  steps_verified: false
+  steps:
+    - 登录 schwab.com，进入 Accounts → History，选一个账户。
+    - 时间范围选最近 12 个月（或更长），点右上角 Export，格式选 CSV。
+    - 再到 Positions 页面，同一个账户点 Export，下载当前持仓 CSV。
+    - 两个文件都拖进 Keel；以后每月各导一次就能接上。
+  supported: true
+  note: 存取款、股息、利息、费用和预扣税会记账；买卖和再投资不计入收支。账户总值取持仓文件的 Account Total，持仓要按单个账户导出。
+  en:
+    steps:
+      - Sign in at schwab.com, go to Accounts → History and pick one account.
+      - Choose the last 12 months (or longer), click Export at the top right, and choose CSV.
+      - Then on the Positions page, Export the same account's current positions as CSV.
+      - Drop both files into Keel; after that, export both once a month.
+    note: Deposits, withdrawals, dividends, interest, fees and withheld tax are booked; buys, sells and reinvestments are not spending. The account's value comes from Account Total in the positions file; export positions one account at a time.
+- id: fidelity
+  name: Fidelity
+  kind: broker
+  importers: [fidelity]
+  export_url: https://digital.fidelity.com/
+  steps_verified: false
+  steps:
+    - 登录 fidelity.com，进入 Activity & Orders，先选一个账户。
+    - 选时间范围（最近 12 个月，可能要分段），点下载图标保存为 CSV。
+    - 再到 Positions 页面，同一个账户下载当前持仓 CSV。
+    - 两个文件都拖进 Keel；IRA / Roth 账户会自动算作退休账户。
+  supported: true
+  note: 一个文件只能有一个账户；选了「全部账户」再下载的文件会被拒绝。买卖、再投资、货币基金（SPAXX 等）申赎不计入收支。
+  en:
+    steps:
+      - Sign in at fidelity.com, go to Activity & Orders and pick one account first.
+      - Choose the date range (last 12 months, possibly in parts), click the download icon and save as CSV.
+      - Then on the Positions page, download the same account's current positions as CSV.
+      - Drop both files into Keel; IRA / Roth accounts count as retirement automatically.
+    note: 'One account per file: a download made with "All accounts" selected is refused. Buys, reinvestments and core money-market (SPAXX etc.) moves are not counted as income or spending.'
+- id: ibkr
+  name: Interactive Brokers
+  kind: broker
+  importers: [ibkr]
+  export_url: https://www.interactivebrokers.com/portal/
+  steps_verified: false
+  steps:
+    - 登录 Client Portal，进入 Performance & Reports → Statements。
+    - 选 Activity Statement，周期选 Annual 或自定义最近 12 个月。
+    - 格式选 CSV，点 Run，再下载。
+    - 拖进 Keel 即可：一份结单里已经有存取款、股息、利息、费用和期初期末净值。
+  supported: true
+  note: 期初净值记为账户的起点，期末净值和期间资金流的差额记为投资收益。非基础货币的股息按结单里的汇率换算。
+  en:
+    steps:
+      - Sign in to Client Portal and go to Performance & Reports → Statements.
+      - Choose Activity Statement with an Annual or custom 12-month period.
+      - Choose CSV, click Run, then download.
+      - 'Drop it into Keel: one statement has deposits, withdrawals, dividends, interest, fees and starting and ending net asset value.'
+    note: The starting net asset value becomes the account's starting point; the gap between ending value and the period's cash flows counts as investment return. Dividends in other currencies use the statement's own exchange rate.
+- id: alipay
+  name: 支付宝 Alipay
+  kind: payment
+  importers:
+  - alipay
+  export_url: ''
+  steps_verified: false
+  steps:
+  - 打开支付宝 App，进入「我的」→「账单」。
+  - 点右上角「···」→「开具交易流水证明」，用途选「用于个人对账」。
+  - 选时间范围，填接收邮箱，完成身份验证。
+  - 邮箱会收到一个加密压缩包；解压密码在支付宝 App 的消息里。
+  - 邮箱已连接时 Keel 会收取附件；在邮箱旁「账单解压密码」填入密码并重试。已解压的 CSV 可直接拖进来。时间范围以 App 提示为准，分批或重叠导出均可去重。
+  supported: true
+  note: 余额宝转入转出、还信用卡这类「不计收支」的记录不会算成收入或支出；关闭的交易会被跳过。
+  en:
+    name: Alipay
+    steps:
+    - Open the Alipay app and go to Me → Bills.
+    - 'Tap ··· at the top right → Transaction record certificate (开具交易流水证明), purpose: personal reconciliation.'
+    - Choose the period, enter your email and complete verification.
+    - An encrypted zip arrives by email; the password is in your Alipay app messages.
+    - A connected mailbox collects attachments. Save the archive code beside Mailbox to retry; an already-unzipped CSV can be dropped directly. Follow the app range limit; overlapping
+      exports are deduplicated.
+    note: Neutral entries such as Yu'e Bao transfers and card repayments are not counted as income or spending; closed transactions are skipped.
+- id: wechat
+  name: 微信支付 WeChat Pay
+  kind: payment
+  importers:
+  - wechat
+  export_url: https://pay.wechatpay.cn/doc/v3/merchant/4013071200
+  steps_verified: false
+  steps:
+  - 微信「我」→「服务」→「钱包」→右上角「账单」（英文界面可能显示 Transactions）。
+  - 进入整页账单后继续找「常见问题」→「下载账单」；不是点开某笔交易，也不是在列表中找 Export。
+  - 如有用途选择，优先选「用于个人对账」以取得 CSV / Excel；「证明材料」可能提供不同文件格式，Keel 当前不支持 PDF。
+  - 时间上限以你当前 App 为准，可分批导出到邮箱；每次解压码请按对应导出通知核对。
+  - 看不到「常见问题」时，回钱包→「消费者保护」→「帮助中心」，搜索「下载账单」；不同版本入口可能不同。
+  - 邮箱已连接时 Keel 会收取附件；在邮箱旁「账单解压密码」填入密码即可重试。
+  supported: true
+  note: 零钱提现、充值这类中性交易不计入收支；退款会自动抵掉原来那笔消费。
+  en:
+    name: WeChat Pay
+    steps:
+    - 'WeChat: Me → Services → Wallet → Bills / Transactions at the top right.'
+    - From the full bill list, look for FAQ (常见问题) → Download bills (下载账单), not an individual transaction or an Export button in the list.
+    - Choose personal reconciliation if offered for CSV / Excel. Proof-material exports may use another format; Keel cannot import PDF yet.
+    - Use the range allowed by your current app; export in batches and check the code for the matching export.
+    - 'If FAQ is absent: Wallet → Consumer Protection → Help Center; search 下载账单. Menus vary by version.'
+    - A connected mailbox collects attachments. Use Statement ZIP passwords beside Mailbox to save the code and retry.
+    note: Neutral entries like withdrawals and top-ups are not counted; refunds are netted against the original purchase.
+- id: ningbo
+  name: 宁波银行
+  kind: bank
+  importers:
+  - ningbo
+  export_url: https://www.nbcb.com.cn/
+  steps_verified: false
+  steps:
+  - 在宁波银行 App 或个人网银选择要导入的银行卡。
+  - 在 App 搜索「打印交易流水」；找不到时向 App 内客服询问该业务，个人网银也可查交易明细。
+  - 先导出最近一个月核对，确认后再分批补历史；选择含交易日期、金额、余额的 CSV 或 Excel。
+  - 文件名保留「宁波银行」，下载到电脑后拖进 Keel；若只提供 PDF，当前不能直接导入。
+  supported: true
+  note: 已支持收入 / 支出两列或「交易金额 + 借贷标志」两种表格布局，余额列用于核对；尚未用你的实际导出验证。这里是账单导入，不会自动登录银行抓取后续交易。
+  en:
+    name: Bank of Ningbo
+    steps:
+    - Select the card in the Bank of Ningbo app or personal online banking.
+    - Look for export, download or statement printing in transaction details. Menus vary; ask in-app support about exporting transaction details if needed.
+    - Start with one month, then add history after checking it. Choose CSV or Excel with date, amount and balance columns.
+    - Keep Bank of Ningbo or 宁波银行 in the filename and drop it into Keel. PDF exports cannot be imported directly.
+    note: 'Two table layouts are supported: income/spending columns, or amount plus a debit/credit flag. Your actual export has not been verified. Future bank transactions require another
+      export.'
+- id: cmb
+  name: 招商银行
+  kind: bank
+  importers: []
+  export_url: https://www.cmbchina.com/
+  steps_verified: false
+  supported: false
+  steps:
+  - 在招商银行 App 搜索「流水打印」，或向「小招」询问流水打印并发送邮箱；信用卡账单在「掌上生活」中另查。
+  - 收到文件后先看格式；当前不能直接读取 PDF 或图片流水，不要把流水证明当成可导入的表格。
+  - 如果个人网银提供 CSV 或 Excel 交易明细，保留日期、收支金额、摘要、余额列，先导出最近一个月。
+  - 招商银行尚无专用导入器；表格可拖入 Keel，用导入向导核对列和收支方向。先预览确认，再导入后续月份。
+  note: 当前不支持招商银行自动同步。App 入口和导出格式仍需以你的版本为准；只有 PDF 时需要先补充该格式支持，不能直接完成接入。
+  en:
+    name: China Merchants Bank
+    steps:
+    - Search for 流水打印 in the CMB app, select your debit card, period and receiving email. Credit-card statements are in the CMB Life app.
+    - Check the received format. PDF and image statements cannot be imported directly.
+    - If personal online banking offers CSV or Excel, export one month with date, amount, description and balance columns.
+    - There is no dedicated CMB importer yet. Drop a table into Keel and use the import wizard to check columns and amount signs before adding more months.
+    note: Automatic CMB sync is not implemented. Menus and formats depend on your app version. PDF-only exports need additional format support.
+- id: okx
+  name: OKX
+  kind: crypto
+  importers: [okx]
+  export_url: https://www.okx.com/
+  steps_verified: false
+  steps:
+    - 在电脑上登录 okx.com，进入「资产」→「账单」。
+    - 选时间范围和账户（资金账户、交易账户分别导出），点导出，格式选 CSV。
+    - 再在资产页导出一份当前各币种余额（带 USD 估值），或者在 Keel 的「资产」里手动填总值。
+    - 文件名里保留 OKX，拖进 Keel 即可。
+  supported: true
+  note: 只记稳定币（USDT、USDC，按 1 美元计）的充提、利息和手续费；买卖、划转和其他币种充提不计入收支，账户价值以资产快照为准。
+  en:
+    steps:
+      - Sign in at okx.com on a computer and go to Assets → Bills.
+      - Choose the period and account (funding and trading accounts separately), click export and choose CSV.
+      - Also export current balances per currency (with USD value) from the assets page, or enter the total value in Keel under Assets.
+      - Keep OKX in the file name and drop it into Keel.
+    note: Only stablecoin (USDT, USDC at $1) deposits, withdrawals, interest and fees are booked; trades, internal transfers and other coins' deposits are not income or spending. The account's value comes from the asset snapshot.

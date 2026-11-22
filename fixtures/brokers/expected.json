@@ -1,0 +1,95 @@
+{
+  "Assets:Schwab:Brokerage-234": {
+    "account": "Assets:Schwab:Brokerage-234",
+    "importer": "schwab",
+    "dividends": "94.16",
+    "interest": "0.45",
+    "fees": "0.62",
+    "taxes": "3.63",
+    "transfers_in": "9500",
+    "marks": {
+      "2026-09-30": "8996.62"
+    },
+    "closing": null,
+    "paired": 9,
+    "unpaired": 0
+  },
+  "Assets:Fidelity:Retirement-6789": {
+    "account": "Assets:Fidelity:Retirement-6789",
+    "importer": "fidelity",
+    "dividends": "55.67",
+    "interest": "0",
+    "fees": "0",
+    "taxes": "0",
+    "transfers_in": "5247.00",
+    "marks": {
+      "2026-09-30": "5061.31"
+    },
+    "closing": null,
+    "paired": 9,
+    "unpaired": 0
+  },
+  "Assets:IBKR:Brokerage-4321": {
+    "account": "Assets:IBKR:Brokerage-4321",
+    "importer": "ibkr",
+    "dividends": "207.45",
+    "interest": "176.99",
+    "fees": "10.00",
+    "taxes": "18.56",
+    "transfers_in": "11250",
+    "marks": {
+      "2025-12-31": "20425.37",
+      "2026-09-30": "32181.43"
+    },
+    "closing": null,
+    "paired": 6,
+    "unpaired": 0
+  },
+  "Assets:Bank of Ningbo:Checking-1234": {
+    "account": "Assets:Bank of Ningbo:Checking-1234",
+    "importer": "ningbo",
+    "dividends": "0",
+    "interest": "46.89",
+    "fees": "0",
+    "taxes": "0",
+    "transfers_in": "0",
+    "marks": {},
+    "closing": [
+      "2026-09-20",
+      "139245.69"
+    ],
+    "paired": 0,
+    "unpaired": 0
+  },
+  "Assets:Bank of Ningbo:Checking-5678": {
+    "account": "Assets:Bank of Ningbo:Checking-5678",
+    "importer": "ningbo",
+    "dividends": "0",
+    "interest": "40.89",
+    "fees": "0",
+    "taxes": "0",
+    "transfers_in": "0",
+    "marks": {},
+    "closing": [
+      "2026-09-20",
+      "137402.69"
+    ],
+    "paired": 0,
+    "unpaired": 0
+  },
+  "Assets:OKX:Crypto": {
+    "account": "Assets:OKX:Crypto",
+    "importer": "okx",
+    "dividends": "0",
+    "interest": "15.48",
+    "fees": "1",
+    "taxes": "0",
+    "transfers_in": "2550",
+    "marks": {
+      "2026-09-30": "5169.42"
+    },
+    "closing": null,
+    "paired": 0,
+    "unpaired": 10
+  }
+}

@@ -1,0 +1,15 @@
+# Synthetic account map used by the demo data. Copy to accounts.local.yaml (gitignored) and
+# replace with your real accounts. `hint` = account number fragment found in export filenames.
+accounts:
+  - name: Assets:Chase:Checking
+    importer: chase_checking
+    hint: "0001"
+    asset_class: cash
+  - name: Liabilities:Chase:Freedom
+    importer: chase_credit
+    hint: "0002"
+  - name: Liabilities:Amex:Gold
+    importer: amex
+  # Accounts you don't import statements for still need a class so reports can value them.
+  - name: Assets:Vanguard:Brokerage
+    asset_class: brokerage

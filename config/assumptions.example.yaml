@@ -1,0 +1,30 @@
+# Planning assumptions. Copy to assumptions.local.yaml (gitignored) to override.
+base_currency: USD
+
+# Expected NOMINAL annual return by asset class (used by the lighthouses, not by history).
+expected_return:
+  cash: 0.04          # ~T-bill
+  term_deposit: 0.03  # fixed-rate deposits
+  brokerage: 0.08
+  retirement: 0.08
+  crypto: 0.0         # no expected return assumed
+  real_estate: 0.03
+  vehicle: -0.15
+  other: 0.0
+
+# Which asset classes count as "assets that produce passive income" for the lighthouses.
+# Self-use property and vehicles are excluded on purpose (they are not 可变现的复利资产).
+fi_asset_classes: [cash, term_deposit, brokerage, retirement, crypto]
+
+withdrawal_rate: 0.04       # lighthouse 3 (financial independence)
+idle_cash_months: 6         # cash beyond N months of spending is flagged as idle
+tbill_rate: 0.04            # opportunity cost of idle cash (replaced by FRED data in M6)
+
+# How each asset class maps onto the simulator's three building blocks (stocks / bonds / cash).
+sim_mapping:
+  cash: {cash: 1.0}
+  term_deposit: {bonds: 1.0}  # fixed-rate deposits behave like short bonds
+  brokerage: {stocks: 1.0}
+  retirement: {stocks: 0.8, bonds: 0.2}
+  crypto: {stocks: 1.0}      # no long crypto history: treated as equity risk
+  other: {cash: 1.0}

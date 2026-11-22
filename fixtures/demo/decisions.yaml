@@ -1,0 +1,29 @@
+# Synthetic user decisions for the demo ledger (applied by `make seed-demo`).
+version: 1
+rules:
+  - {pattern: oakwood apartments, target_account: 'Expenses:Housing:Rent', payee: Oakwood}
+  - {pattern: vanguard buy, target_account: 'Assets:Vanguard:Brokerage', payee: Vanguard}
+valuations:
+  - {account: 'Assets:Vanguard:Brokerage', date: '2024-11-30', value: '1500.00'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2024-12-31', value: '3041.25'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2025-01-31', value: '4535.17'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2025-02-28', value: '6009.77'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2025-03-31', value: '7328.27'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2025-04-30', value: '8817.28'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2025-05-31', value: '10771.37'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2025-06-30', value: '12529.88'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2025-07-31', value: '14637.58'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2025-08-31', value: '16386.42'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2025-09-30', value: '18260.03'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2025-10-31', value: '20022.97'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2025-11-30', value: '20329.60'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2025-12-31', value: '22667.18'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2026-01-31', value: '24785.99'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2026-02-28', value: '26955.21'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2026-03-31', value: '26819.03'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2026-04-30', value: '26634.79'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2026-05-31', value: '27373.04'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2026-06-30', value: '28552.78'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2026-07-31', value: '30600.99'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2026-08-31', value: '32260.12'}
+  - {account: 'Assets:Vanguard:Brokerage', date: '2026-09-30', value: '34656.95'}

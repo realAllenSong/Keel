@@ -1,0 +1,6 @@
+use_when: "Read or change the user's Keel 龙骨 personal-finance ledger with the `keel` command: spending, income, savings, net worth, account balances, finding / categorising / recording transactions, importing statements, syncing banks, closing a month, the financial plan (记账, 账本, 花销, 支出, 收入, 净资产, 分类, 对账, 结账, 财务规划)."
+not_for: "Machines without /Applications/Keel.app; analysing listed stocks (finance layer); developing the Keel app itself (work in its repository)."
+keywords: ["keel", "personal finance", "ledger", "spending", "expenses", "income", "net worth", "budget", "transactions", "categorize", "bank statement", "reconcile", "龙骨", "记账", "账本", "账单", "花销", "支出", "收入", "净资产", "资产", "分类", "对账", "结账", "财务规划", "预算"]
+needs: ["/Applications/Keel.app"]
+alternatives: []
+last_reviewed: 2026-11-11

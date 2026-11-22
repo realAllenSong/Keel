@@ -1,0 +1,138 @@
+# Built-in, generic merchant rules (source=seed). Your own rules always take precedence.
+# match_type: contains (case-insensitive on normalised description) | regex
+rules:
+  # Food
+  - {pattern: "wholefds", target: "Expenses:Food:Groceries", payee: "Whole Foods"}
+  - {pattern: "whole foods", target: "Expenses:Food:Groceries", payee: "Whole Foods"}
+  - {pattern: "trader joe", target: "Expenses:Food:Groceries", payee: "Trader Joe's"}
+  - {pattern: "costco", target: "Expenses:Food:Groceries", payee: "Costco"}
+  - {pattern: "safeway", target: "Expenses:Food:Groceries", payee: "Safeway"}
+  - {pattern: "h mart", target: "Expenses:Food:Groceries", payee: "H Mart"}
+  - {pattern: "uber eats", target: "Expenses:Food:Dining", payee: "Uber Eats"}
+  - {pattern: "doordash", target: "Expenses:Food:Dining", payee: "DoorDash"}
+  - {pattern: "starbucks", target: "Expenses:Food:Coffee", payee: "Starbucks"}
+  - {pattern: "blue bottle", target: "Expenses:Food:Coffee", payee: "Blue Bottle"}
+  - {pattern: "sweetgreen", target: "Expenses:Food:Dining", payee: "Sweetgreen"}
+  # Transport
+  - {pattern: "shell oil", target: "Expenses:Transport:Fuel", payee: "Shell"}
+  - {pattern: "chevron", target: "Expenses:Transport:Fuel", payee: "Chevron"}
+  - {pattern: "exxon", target: "Expenses:Transport:Fuel", payee: "Exxon"}
+  - {pattern: "uber trip", target: "Expenses:Transport:Rideshare", payee: "Uber"}
+  - {pattern: "lyft", target: "Expenses:Transport:Rideshare", payee: "Lyft"}
+  - {pattern: "mta*", target: "Expenses:Transport:Public", payee: "MTA"}
+  # Travel
+  - {pattern: "delta air", target: "Expenses:Travel:Flights", payee: "Delta"}
+  - {pattern: "united airlines", target: "Expenses:Travel:Flights", payee: "United"}
+  - {pattern: "american airlines", target: "Expenses:Travel:Flights", payee: "American Airlines"}
+  - {pattern: "airbnb", target: "Expenses:Travel:Lodging", payee: "Airbnb"}
+  - {pattern: "marriott", target: "Expenses:Travel:Lodging", payee: "Marriott"}
+  # Subscriptions & bills
+  - {pattern: "netflix", target: "Expenses:Subscriptions:Streaming", payee: "Netflix"}
+  - {pattern: "spotify", target: "Expenses:Subscriptions:Streaming", payee: "Spotify"}
+  - {pattern: "hulu", target: "Expenses:Subscriptions:Streaming", payee: "Hulu"}
+  - {pattern: "apple.com/bill", target: "Expenses:Subscriptions:Software", payee: "Apple"}
+  - {pattern: "claude.ai", target: "Expenses:Subscriptions:Software", payee: "Claude"}
+  - {pattern: "openai", target: "Expenses:Subscriptions:Software", payee: "OpenAI"}
+  - {pattern: "anthropic", target: "Expenses:Subscriptions:Software", payee: "Anthropic"}
+  - {pattern: "cursor", target: "Expenses:Subscriptions:Software", payee: "Cursor"}
+  - {pattern: "icloud", target: "Expenses:Subscriptions:Software", payee: "iCloud"}
+  - {pattern: "verizon", target: "Expenses:Housing:Phone & Internet", payee: "Verizon"}
+  - {pattern: "comcast", target: "Expenses:Housing:Phone & Internet", payee: "Comcast"}
+  - {pattern: "t-mobile", target: "Expenses:Housing:Phone & Internet", payee: "T-Mobile"}
+  - {pattern: "pse&g", target: "Expenses:Housing:Utilities", payee: "PSE&G"}
+  - {pattern: "con ed", target: "Expenses:Housing:Utilities", payee: "Con Edison"}
+  # Shopping
+  - {pattern: "amazon", target: "Expenses:Shopping:Online", payee: "Amazon"}
+  - {pattern: "amzn", target: "Expenses:Shopping:Online", payee: "Amazon"}
+  - {pattern: '\btarget\b', match_type: regex, target: "Expenses:Shopping:General", payee: "Target"}
+  # Cash & fees
+  - {pattern: "atm withdrawal", target: "Expenses:Cash", payee: "ATM"}
+  - {pattern: "foreign transaction fee", target: "Expenses:Fees:Bank"}
+  - {pattern: "late fee", target: "Expenses:Fees:Bank"}
+  # Income
+  - {pattern: "interest payment", target: "Income:Interest", payee: "Bank interest"}
+  - {pattern: "interest paid", target: "Income:Interest", payee: "Bank interest"}
+  - {pattern: "payroll", target: "Income:Salary"}
+  - {pattern: "direct dep", target: "Income:Salary"}
+  # 中文常见
+  - {pattern: "美团", target: "Expenses:Food:Dining", payee: "美团"}
+  - {pattern: "饿了么", target: "Expenses:Food:Dining", payee: "饿了么"}
+  - {pattern: "滴滴", target: "Expenses:Transport:Rideshare", payee: "滴滴"}
+  - {pattern: "余额宝", target: "Income:Interest", payee: "余额宝"}
+  - {pattern: "代发工资", target: "Income:Salary"}
+  - {pattern: "结息", target: "Income:Interest", payee: "银行利息"}
+
+# Bank-provided category column -> suggested category (status stays pending until confirmed)
+hints:
+  # 支付宝「交易分类」 / 微信「交易类型」 (only unambiguous ones; 转账红包 etc. stay for review)
+  餐饮美食: "Expenses:Food:Dining"
+  日用百货: "Expenses:Shopping:General"
+  服饰装扮: "Expenses:Shopping:General"
+  数码电器: "Expenses:Shopping:General"
+  母婴亲子: "Expenses:Shopping:General"
+  家居家装: "Expenses:Housing:Home"
+  住房物业: "Expenses:Housing:Utilities"
+  充值缴费: "Expenses:Housing:Phone & Internet"
+  美容美发: "Expenses:Personal"
+  生活服务: "Expenses:Personal"
+  宠物: "Expenses:Personal"
+  运动户外: "Expenses:Entertainment"
+  文化休闲: "Expenses:Entertainment"
+  酒店旅游: "Expenses:Travel"
+  交通出行: "Expenses:Transport:Public"
+  爱车养车: "Expenses:Transport:Car"
+  医疗健康: "Expenses:Health"
+  教育培训: "Expenses:Education"
+  公益捐赠: "Expenses:Gifts"
+  微信红包: "Expenses:Gifts"
+  Groceries: "Expenses:Food:Groceries"
+  # Plaid personal_finance_category (detailed, then primary). TRANSFER_*, LOAN_PAYMENTS and
+  # INCOME are left alone: transfers pair, income needs your eye.
+  FOOD_AND_DRINK_GROCERIES: "Expenses:Food:Groceries"
+  FOOD_AND_DRINK_COFFEE: "Expenses:Food:Coffee"
+  FOOD_AND_DRINK: "Expenses:Food:Dining"
+  TRANSPORTATION_TAXIS_AND_RIDE_SHARES: "Expenses:Transport:Rideshare"
+  TRANSPORTATION_PUBLIC_TRANSIT: "Expenses:Transport:Public"
+  TRANSPORTATION_GAS: "Expenses:Transport:Fuel"
+  TRANSPORTATION: "Expenses:Transport:Car"
+  TRAVEL_FLIGHTS: "Expenses:Travel:Flights"
+  TRAVEL_LODGING: "Expenses:Travel:Lodging"
+  TRAVEL: "Expenses:Travel"
+  GENERAL_MERCHANDISE_ONLINE_MARKETPLACES: "Expenses:Shopping:Online"
+  GENERAL_MERCHANDISE: "Expenses:Shopping:General"
+  RENT_AND_UTILITIES_RENT: "Expenses:Housing:Rent"
+  RENT_AND_UTILITIES_TELEPHONE: "Expenses:Housing:Phone & Internet"
+  RENT_AND_UTILITIES_INTERNET_AND_CABLE: "Expenses:Housing:Phone & Internet"
+  RENT_AND_UTILITIES: "Expenses:Housing:Utilities"
+  MEDICAL: "Expenses:Health"
+  PERSONAL_CARE: "Expenses:Personal"
+  ENTERTAINMENT_TV_AND_MOVIES: "Expenses:Subscriptions:Streaming"
+  ENTERTAINMENT: "Expenses:Entertainment"
+  BANK_FEES: "Expenses:Fees:Bank"
+  HOME_IMPROVEMENT: "Expenses:Housing:Home"
+  GENERAL_SERVICES_EDUCATION: "Expenses:Education"
+  GOVERNMENT_AND_NON_PROFIT_DONATIONS: "Expenses:Gifts"
+  # Amex Excel categories ('Level 1-Level 2'): the specific ones, then first-level fallbacks
+  Merchandise & Supplies-Groceries: "Expenses:Food:Groceries"
+  Transportation-Taxis & Coach: "Expenses:Transport:Rideshare"
+  Transportation-Rail Services: "Expenses:Transport:Public"
+  Transportation-Airline: "Expenses:Travel:Flights"
+  Travel-Lodging: "Expenses:Travel:Lodging"
+  Merchandise & Supplies: "Expenses:Shopping:General"
+  Transportation: "Expenses:Transport:Public"
+  Communications: "Expenses:Housing:Phone & Internet"
+  Food & Drink: "Expenses:Food:Dining"
+  Restaurant: "Expenses:Food:Dining"
+  Gas: "Expenses:Transport:Fuel"
+  Travel: "Expenses:Travel"
+  Shopping: "Expenses:Shopping:General"
+  Merchandise: "Expenses:Shopping:General"
+  Bills & Utilities: "Expenses:Housing:Utilities"
+  Health & Wellness: "Expenses:Health"
+  Entertainment: "Expenses:Entertainment"
+  Personal: "Expenses:Personal"
+  Home: "Expenses:Housing:Home"
+  Education: "Expenses:Education"
+  Gifts & Donations: "Expenses:Gifts"
+  Fees & Adjustments: "Expenses:Fees:Bank"
+  Automotive: "Expenses:Transport:Car"

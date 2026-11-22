@@ -1,0 +1,96 @@
+# Builds the SwiftUI Keel.app with its bundled engine, runs the Swift unit tests, and checks the
+# real engine against the native screens' models on the synthetic demo ledger (never real data).
+name: macOS app
+
+on:
+  push:
+    branches: [main, "claude/**"]
+    paths: ["apple/**", "desktop/**", "backend/**", "Makefile", ".github/workflows/macos-app.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write  # screenshots are pushed to the ci-screenshots branch for design review
+
+concurrency:
+  group: macos-app-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 45
+    env:
+      DEMO_HOME: ${{ github.workspace }}/ci-home
+      PF_WATCH_DIRS: ${{ github.workspace }}/ci-home/Inbox
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Translations
+        run: python3 apple/scripts/check_l10n.py
+
+      - name: Swift unit tests
+        working-directory: apple
+        run: swift test
+
+      - name: Build Keel.app (ad-hoc signed)
+        env:
+          SIGN_IDENTITY: "-"
+        run: make app
+
+      - name: Seed the demo ledger
+        working-directory: backend
+        run: |
+          mkdir -p "$DEMO_HOME/data" "$DEMO_HOME/raw"
+          export PF_DB="$DEMO_HOME/data/ledger.db" PF_RAW_DIR="$DEMO_HOME/raw"
+          uv run pf import ../fixtures/demo/statements/* > /dev/null
+          uv run pf decisions import ../fixtures/demo/decisions.yaml
+          # Market history for the 规划 screenshots (public Shiller + FRED data; best effort).
+          PF_DATA_DIR="$DEMO_HOME/data" uv run pf market --history || echo "market history unavailable"
+
+      - name: Engine self-test (bundled engine, demo data, zh + en)
+        working-directory: apple
+        run: |
+          swift build -c release --product keel-selftest
+          "$(swift build -c release --show-bin-path)/keel-selftest" \
+            "$GITHUB_WORKSPACE/dist/Keel.app/Contents/Resources/engine/keel-engine/keel-engine" "$DEMO_HOME"
+
+      - name: Launch smoke test
+        run: |
+          PF_APP_HOME="$DEMO_HOME" PF_NOTIFY=0 dist/Keel.app/Contents/MacOS/Keel > launch.log 2>&1 &
+          pid=$!
+          sleep 20
+          kill -0 "$pid" || { echo "Keel exited early"; cat launch.log; exit 1; }
+          pgrep -f keel-engine > /dev/null || { echo "engine not running"; cat launch.log; exit 1; }
+          kill "$pid"; sleep 3
+          if pgrep -f keel-engine; then echo "engine outlived the app"; exit 1; fi
+          echo "launch OK"
+
+      - name: Screenshots (demo ledger, light/dark, zh/en)
+        run: |
+          mkdir -p shots
+          PF_APP_HOME="$DEMO_HOME" PF_NOTIFY=0 KEEL_SNAPSHOT_DIR="$PWD/shots" dist/Keel.app/Contents/MacOS/Keel &
+          pid=$!
+          for i in $(seq 600); do kill -0 "$pid" 2>/dev/null || break; sleep 1; done
+          kill "$pid" 2>/dev/null || true
+          ls -la shots
+
+      - name: Publish screenshots
+        if: always()
+        run: |
+          cd shots
+          [ -n "$(ls -A)" ] || exit 0
+          printf '%s\n' "$GITHUB_SHA" > COMMIT
+          git init -q && git checkout -q -b ci-screenshots && git add .
+          git -c user.name=keel-ci -c user.email=ci@keel.local commit -qm "Screenshots for $GITHUB_SHA"
+          git push -fq "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" ci-screenshots
+
+      - name: Package
+        run: ditto -c -k --keepParent dist/Keel.app Keel.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Keel-${{ github.sha }}
+          path: Keel.zip
+          retention-days: 7

@@ -1,0 +1,17 @@
+# UNVERIFIED until checked against a real export (M4).
+id: chase_checking
+institution: Chase
+currency: USD
+account_type: Assets
+asset_class: cash
+detect:
+  header: [Details, Posting Date, Description, Amount, Type, Balance]
+columns:
+  date: Posting Date
+  description: Description
+  amount: Amount
+  balance: Balance
+  ref: Check or Slip #
+date_format: "%m/%d/%Y"
+sign: as_is            # debits are negative in the file
+account_hint_regex: 'Chase(\d{4})'

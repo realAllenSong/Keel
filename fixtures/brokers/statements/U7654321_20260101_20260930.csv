@@ -1,0 +1,50 @@
+Statement,Header,Field Name,Field Value
+Statement,Data,BrokerName,Interactive Brokers LLC
+Statement,Data,Title,Activity Statement
+Statement,Data,Period,"January 1, 2026 - September 30, 2026"
+Account Information,Header,Field Name,Field Value
+Account Information,Data,Name,Jane Doe
+Account Information,Data,Account,U7654321
+Account Information,Data,Account Type,Individual
+Account Information,Data,Base Currency,USD
+Net Asset Value,Header,Asset Class,Prior Total,Current Long,Current Short,Current Total,Change
+Net Asset Value,Data,Cash ,100.00,200.00,0,200.00,100.00
+Net Asset Value,Data,Stock,20325.37,31981.43,0,31981.43,0
+Net Asset Value,Data,Total,20425.37,32181.43,0,32181.43,11756.06
+Net Asset Value,Header,Time Weighted Rate of Return
+Net Asset Value,Data,4.2%
+Trades,Header,DataDiscriminator,Asset Category,Currency,Symbol,Date/Time,Quantity,T. Price,Proceeds,Comm/Fee
+Trades,Data,Order,Stocks,USD,QQQ,"2026-01-08, 10:01:02",5,480.10,-2400.50,-1.00
+Deposits & Withdrawals,Header,Currency,Settle Date,Description,Amount
+Deposits & Withdrawals,Data,USD,2026-02-05,Electronic Fund Transfer,2500
+Deposits & Withdrawals,Data,USD,2026-03-05,Electronic Fund Transfer,2000
+Deposits & Withdrawals,Data,USD,2026-04-05,Electronic Fund Transfer,2500
+Deposits & Withdrawals,Data,USD,2026-05-05,Electronic Fund Transfer,2500
+Deposits & Withdrawals,Data,USD,2026-06-05,Electronic Fund Transfer,2500
+Deposits & Withdrawals,Data,USD,2026-09-20,Disbursement Initiated by Jane Doe,-750
+Deposits & Withdrawals,Data,Total,,,11250
+Dividends,Header,Currency,Date,Description,Amount
+Dividends,Data,USD,2026-03-12,QQQ(US46090E1038) Cash Dividend USD 0.71 per Share (Ordinary Dividend),74.25
+Dividends,Data,USD,2026-06-12,QQQ(US46090E1038) Cash Dividend USD 0.71 per Share (Ordinary Dividend),47.25
+Dividends,Data,USD,2026-09-12,QQQ(US46090E1038) Cash Dividend USD 0.71 per Share (Ordinary Dividend),64.25
+Dividends,Data,EUR,2026-09-02,ASML(NL0010273215) Cash Dividend EUR 1.60 per Share,20.00
+Dividends,Data,Total,,,999.99
+Dividends,Data,Total in USD,,,999.99
+Withholding Tax,Header,Currency,Date,Description,Amount,Code
+Withholding Tax,Data,USD,2026-03-12,QQQ(US46090E1038) Cash Dividend - US Tax,-7.42,
+Withholding Tax,Data,USD,2026-06-12,QQQ(US46090E1038) Cash Dividend - US Tax,-4.72,
+Withholding Tax,Data,USD,2026-09-12,QQQ(US46090E1038) Cash Dividend - US Tax,-6.42,
+Interest,Header,Currency,Date,Description,Amount
+Interest,Data,USD,2026-01-04,USD Credit Interest for Jan-2026,5.11
+Interest,Data,USD,2026-02-04,USD Credit Interest for Feb-2026,20.11
+Interest,Data,USD,2026-03-04,USD Credit Interest for Mar-2026,12.11
+Interest,Data,USD,2026-04-04,USD Credit Interest for Apr-2026,29.11
+Interest,Data,USD,2026-05-04,USD Credit Interest for May-2026,23.11
+Interest,Data,USD,2026-06-04,USD Credit Interest for Jun-2026,22.11
+Interest,Data,USD,2026-07-04,USD Credit Interest for Jul-2026,30.11
+Interest,Data,USD,2026-08-04,USD Credit Interest for Aug-2026,14.11
+Interest,Data,USD,2026-09-04,USD Credit Interest for Sep-2026,21.11
+Fees,Header,Subtitle,Currency,Date,Description,Amount
+Fees,Data,Other Fees,USD,2026-09-03,Market data fee,-10.00
+Base Currency Exchange Rate,Header,Currency,Rate
+Base Currency Exchange Rate,Data,EUR,1.0850

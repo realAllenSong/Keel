@@ -1,0 +1,17 @@
+# UNVERIFIED until checked against a real export (M4).
+id: amex
+institution: American Express
+currency: USD
+account_type: Liabilities
+asset_class: null
+detect:
+  header: [Date, Description, Amount]
+  filename: 'activity|amex'
+columns:
+  date: Date
+  description: Description
+  amount: Amount
+  category_hint: Category
+  ref: Reference
+date_format: "%m/%d/%Y"
+sign: negate           # Amex lists charges as positive numbers

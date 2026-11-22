@@ -1,0 +1,15 @@
+# UNVERIFIED until checked against a real export (M4). BofA prepends a summary block.
+id: bofa_checking
+institution: Bank of America
+currency: USD
+account_type: Assets
+asset_class: cash
+detect:
+  header: [Date, Description, Amount, Running Bal.]
+columns:
+  date: Date
+  description: Description
+  amount: Amount
+  balance: Running Bal.
+date_format: "%m/%d/%Y"
+sign: as_is

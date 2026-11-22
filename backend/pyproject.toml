@@ -1,0 +1,71 @@
+[project]
+name = "pf"
+version = "0.1.0"
+description = "Local-first personal finance: double-entry ledger, reports, insights and simulations"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "pydantic>=2.9",
+    "sqlalchemy>=2.0.36",
+    "alembic>=1.14",
+    "pandas>=2.2",
+    "openpyxl>=3.1",
+    "numpy>=2.1",
+    "scipy>=1.14",
+    "pyarrow>=18",
+    "pyyaml>=6",
+    "httpx>=0.28",
+    "typer>=0.13",
+    "python-multipart>=0.0.17",
+    "watchdog>=6",
+    "zstandard>=0.25.0",
+    "xlrd>=2.0.2",
+    "yfinance>=1.7.0",
+    "pyzipper>=0.3.6",
+    "keyring>=25",
+    "pypdf>=6,<8",
+    "mcp>=1,<2",
+]
+
+[project.optional-dependencies]
+llm = ["anthropic>=0.40"]
+market = ["yfinance>=0.2.50"]
+
+[project.scripts]
+pf = "pf.cli:app"
+keel = "pf.agent.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "hypothesis>=6.120",
+    "ruff>=0.8",
+    "pyright>=1.1.390",
+    "pre-commit>=4",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["pf"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+# RUF00x: CJK punctuation is intentional. E501: `ruff format` owns line length for code;
+# long user-facing strings (Chinese insight text, SQL) are allowed rather than split mid-phrase.
+ignore = ["RUF001", "RUF002", "RUF003", "E501"]
+
+[tool.pyright]
+include = ["pf"]
+pythonVersion = "3.12"
+typeCheckingMode = "standard"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

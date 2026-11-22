@@ -1,0 +1,26 @@
+repos:
+  - repo: local
+    hooks:
+      - id: privacy-scan
+        name: privacy scan (card / account / ID numbers)
+        entry: python3 scripts/privacy_scan.py
+        language: system
+        pass_filenames: true
+        exclude: '(uv\.lock|Package\.resolved)$'
+      - id: forbid-private-paths
+        name: forbid raw/ data/ and databases
+        entry: "Private data must never be committed"
+        language: fail
+        files: '^(raw|data)/|\.(db|sqlite|duckdb)(-wal|-shm)?$|\.local\.yaml$'
+      - id: ruff
+        name: ruff + pyright
+        entry: bash -c 'cd backend && uv run ruff check --fix . && uv run ruff format . && uv run pyright'
+        language: system
+        pass_filenames: false
+        files: '^backend/'
+      - id: swift-l10n
+        name: Swift translations
+        entry: python3 apple/scripts/check_l10n.py
+        language: system
+        pass_filenames: false
+        files: '^apple/'

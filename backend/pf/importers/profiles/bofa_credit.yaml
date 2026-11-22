@@ -1,0 +1,17 @@
+# Verified against real exports (2026-10): one file per card and month, card digits in the name.
+id: bofa_credit
+institution: Bank of America
+currency: USD
+account_type: Liabilities
+asset_class: null
+detect:
+  header: [Posted Date, Reference Number, Payee, Address, Amount]
+columns:
+  date: Posted Date
+  description: Payee
+  amount: Amount
+  ref: Reference Number
+date_format: "%m/%d/%Y"
+sign: as_is
+# 'August2026_0006.csv', 'currentTransaction_0005.csv': one account per card.
+account_hint_regex: '_(\d{4})\.csv$'

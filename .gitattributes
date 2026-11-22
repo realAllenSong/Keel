@@ -1,0 +1,2 @@
+# Keep synthetic bank exports byte-exact (CRLF like real exports)
+fixtures/demo/statements/* -text

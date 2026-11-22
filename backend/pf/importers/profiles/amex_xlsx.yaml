@@ -1,0 +1,21 @@
+# Amex "Download your account activity" as Excel: a block of card / holder / account-number lines,
+# then the table. Charges are positive, payments and credits negative. Verified against a real
+# export (2026-10).
+id: amex_xlsx
+institution: American Express
+currency: USD
+account_type: Liabilities
+asset_class: null
+format: xlsx
+detect:
+  header: [Date, Description, Amount, Extended Details, Appears On Your Statement As]
+columns:
+  date: Date
+  description: Description
+  amount: Amount
+  category_hint: Category
+  ref: Reference
+date_format: "%m/%d/%Y"
+sign: negate
+# 'XXXX-XXXXXX-01002' in the lines above the table: one account per card.
+account_hint_preamble_regex: 'X{4}-X{6}-(\d{5})'

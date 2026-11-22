@@ -1,0 +1,16 @@
+# UNVERIFIED until checked against a real export (M4).
+id: chase_credit
+institution: Chase
+currency: USD
+account_type: Liabilities
+asset_class: null
+detect:
+  header: [Transaction Date, Post Date, Description, Category, Type, Amount]
+columns:
+  date: Transaction Date
+  description: Description
+  amount: Amount
+  category_hint: Category
+date_format: "%m/%d/%Y"
+sign: as_is            # purchases negative (debt grows), payments positive
+account_hint_regex: 'Chase(\d{4})'
