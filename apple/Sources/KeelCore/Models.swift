@@ -664,7 +664,8 @@ public struct Bills: Decodable, Sendable {
 }
 
 public struct BillSeries: Decodable, Sendable, Identifiable {
-    public var id: String { key }
+    /// One merchant can have two series (pay on the 1st and the 15th): the day tells them apart.
+    public var id: String { "\(key)|\(cadence)|\(day)" }
     public let key: String
     public let name: String
     public let account: String

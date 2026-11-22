@@ -68,7 +68,7 @@ enum DetailTab: String, CaseIterable {
         case .calendar: return L("日历")
         case .assets: return L("资产")
         case .holdings: return L("持仓")
-        case .bills: return L("账单")
+        case .bills: return L("固定收支")
         case .transactions: return L("交易")
         }
     }

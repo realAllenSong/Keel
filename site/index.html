@@ -3,8 +3,65 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Keel 龙骨 · 免费的 Mac 个人记账与财务规划</title>
-<meta name="description" content="把银行和支付宝、微信的账单拖进来，Keel 自动记账、对账，告诉你钱花在哪、离财务自由还有多远。数据只在你的 Mac 上。免费。">
+<title>Keel 龙骨 · 免费开源的 Mac 个人记账与财务规划</title>
+<meta name="description" content="把银行、信用卡、支付宝和微信的账单拖进来，Keel 自动记账、和银行对账，告诉你钱花在哪、每月固定支出多少、投资和大盘比怎样、离财务自由还有多远。数据只在你的 Mac 上。免费，开源。">
+<link rel="canonical" href="https://realallensong.github.io/Keel/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#F4EFE8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15130F" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://realallensong.github.io/Keel/">
+<meta property="og:site_name" content="Keel 龙骨">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Keel 龙骨 · 把每一笔账记清楚">
+<meta property="og:description" content="免费开源的 Mac 个人记账：账单拖进来，自动记账、对账，看清钱花在哪、离财务自由还有多远。数据只在你的 Mac 上。">
+<meta property="og:image" content="https://realallensong.github.io/Keel/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Keel 龙骨：免费开源的 Mac 个人记账">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Keel · Free, open-source personal finance for the Mac">
+<meta name="twitter:description" content="Drop in bank, card, Alipay and WeChat statements; Keel keeps the books, reconciles them and shows where the money goes. Your data stays on your Mac.">
+<meta name="twitter:image" content="https://realallensong.github.io/Keel/img/og.png">
+<link rel="apple-touch-icon" href="img/icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Keel 龙骨",
+  "alternateName": "Keel",
+  "operatingSystem": "macOS 14 or later, Apple silicon",
+  "applicationCategory": "FinanceApplication",
+  "description": "Free, open-source personal finance for the Mac. Bank, card, Alipay and WeChat statements become a double-entry ledger reconciled against your banks, with monthly spending, fixed bills, holdings against the market, savings goals and long-range planning. Data stays on the Mac.",
+  "url": "https://realallensong.github.io/Keel/",
+  "downloadUrl": "https://github.com/realAllenSong/Keel/releases/latest/download/Keel.dmg",
+  "softwareVersion": "1.0.0",
+  "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "realAllenSong", "url": "https://github.com/realAllenSong" },
+  "sameAs": ["https://github.com/realAllenSong/Keel"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Keel 免费吗？",
+     "acceptedAnswer": {"@type": "Answer", "text": "免费，并且按 AGPL-3.0 开源，源代码在 GitHub。它能连接的银行数据服务（Plaid、SimpleFIN Bridge、SnapTrade）由第三方提供，有各自的收费方式；只用账单文件就完全不需要它们。"}},
+    {"@type": "Question", "name": "我的数据存在哪里？",
+     "acceptedAnswer": {"@type": "Answer", "text": "全部在你的 Mac 上：账单、账本和备份在 ~/Library/Application Support/Keel，银行授权在 macOS 钥匙串。Keel 没有服务器，不需要注册，也不上传数据。"}},
+    {"@type": "Question", "name": "支持哪些银行和平台？",
+     "acceptedAnswer": {"@type": "Answer", "text": "账单文件：Chase、American Express、Bank of America、Charles Schwab、Fidelity、盈透、支付宝、微信支付、招商银行、宁波银行、OKX；其他银行的 CSV 或 Excel 教一次就认得。也可以通过 Plaid、SimpleFIN、SnapTrade 直接连接银行和券商。"}},
+    {"@type": "Question", "name": "支持哪些币种？",
+     "acceptedAnswer": {"@type": "Answer", "text": "美元和人民币。其他币种的持仓会折算成这两种。"}},
+    {"@type": "Question", "name": "有 iPhone 或 Windows 版吗？",
+     "acceptedAnswer": {"@type": "Answer", "text": "暂时没有，目前只有 Mac 版，需要 Apple 芯片和 macOS 14 或更新。"}}
+  ]
+}
+</script>
 <link rel="icon" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&family=Noto+Sans+SC:wght@400;500&display=swap">
@@ -32,9 +89,10 @@ header.bar { display: flex; align-items: center; justify-content: space-between;
 .brand small { font-family: var(--sans); font-weight: 400; font-size: 13px; color: var(--muted); }
 .lang { background: none; border: 1px solid var(--rule); border-radius: 6px; color: var(--ink2); font: 13px var(--sans); padding: 4px 10px; cursor: pointer; }
 .hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 48px; align-items: center; padding-block: 56px 72px; border-bottom: 1px solid var(--ink); }
-h1 { font-family: var(--serif); font-weight: 900; font-size: clamp(40px, 6vw, 68px); line-height: 1.15; margin: 0 0 22px; text-wrap: balance; letter-spacing: -0.01em; }
+h1 { font-family: var(--serif); font-weight: 900; font-size: clamp(32px, 4.6vw, 60px); line-height: 1.15; margin: 0 0 22px; text-wrap: balance; letter-spacing: -0.01em; }
 h1 em { font-style: normal; color: var(--seal); }
-html[lang="en"] h1 { font-size: clamp(36px, 5vw, 56px); }  /* English runs longer than Chinese */
+h1 .ln { white-space: nowrap; }  /* each line of the headline stays whole */
+html[lang="en"] h1 { font-size: clamp(30px, 3.9vw, 48px); }  /* English runs longer than Chinese */
 .lede { font-size: 19px; color: var(--ink2); margin: 0 0 32px; max-width: 34em; }
 .download { display: inline-flex; flex-direction: column; gap: 2px; background: var(--ink); color: var(--paper); text-decoration: none; padding: 16px 30px; border-radius: 10px; font-weight: 500; font-size: 18px; transition: transform .15s ease; }
 .download:hover { transform: translateY(-1px); }
@@ -58,6 +116,22 @@ h2 { font-family: var(--serif); font-weight: 900; font-size: clamp(28px, 3.6vw, 
 .steps li { counter-increment: s; display: grid; grid-template-columns: 40px 1fr; align-items: baseline; }
 .steps li::before { content: counter(s); font-family: var(--serif); font-weight: 900; font-size: 24px; color: var(--seal); }
 .note { border-left: 3px solid var(--seal); padding: 6px 0 6px 16px; color: var(--ink2); font-size: 15.5px; margin-top: 22px; }
+.links { display: flex; align-items: center; gap: 14px; }
+.links a { font-size: 14px; color: var(--ink2); text-decoration: none; }
+.links a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.facts { list-style: none; padding: 0; margin: 24px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; }
+.facts li { padding: 14px 0; border-top: 1px solid var(--rule); color: var(--ink2); font-size: 15.5px; }
+.facts b { display: block; font-family: var(--serif); color: var(--ink); font-size: 18px; margin-bottom: 2px; }
+details { border-top: 1px solid var(--rule); padding: 14px 0; }
+details:last-of-type { border-bottom: 1px solid var(--rule); }
+summary { cursor: pointer; font-family: var(--serif); font-weight: 600; font-size: 19px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; color: var(--muted); font-family: var(--sans); font-weight: 400; }
+details[open] summary::after { content: "–"; }
+details p { margin: 10px 0 0; color: var(--ink2); font-size: 15.5px; max-width: 46em; }
+code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .9em; background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; padding: 1px 5px; }
+.oss { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; margin-top: 14px; font-size: 13.5px; color: var(--muted); }
+.oss a { color: var(--ink2); }
 footer { padding-block: 40px 56px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 [data-en] { display: none; }
 html[lang="en"] [data-zh] { display: none; }
@@ -65,7 +139,8 @@ html[lang="en"] [data-en] { display: revert; }
 @media (max-width: 760px) {
   .hero { grid-template-columns: 1fr; padding-block: 28px 48px; gap: 28px; }
   .mark { max-width: 220px; grid-row: 1; justify-self: start; }
-  .cols, .pair { grid-template-columns: 1fr; }
+  .cols, .pair, .facts { grid-template-columns: 1fr; }
+  .links a.gh { display: none; }
   section { padding-block: 48px; }
 }
 @media (prefers-reduced-motion: reduce) { .download { transition: none; } }
@@ -75,18 +150,22 @@ html[lang="en"] [data-en] { display: revert; }
 <div class="wrap">
   <header class="bar">
     <a class="brand" href="#"><img src="img/icon.png" alt=""> Keel <small>龙骨</small></a>
-    <button class="lang" id="lang" type="button">English</button>
+    <nav class="links">
+      <a class="gh" href="https://github.com/realAllenSong/Keel"><span data-zh>源代码</span><span data-en>Source code</span></a>
+      <button class="lang" id="lang" type="button">English</button>
+    </nav>
   </header>
 
   <div class="hero">
     <div>
-      <h1><span data-zh>把每一笔账记清楚，<br>再看清离<em>财务自由</em>还有多远。</span><span data-en>Keep every dollar accounted for, and see how far <em>financial freedom</em> is.</span></h1>
+      <h1><span data-zh><span class="ln">把每一笔账记清楚，</span><br><span class="ln">再看清离<em>财务自由</em></span><br><span class="ln">还有多远。</span></span><span data-en>Keep every dollar accounted for, and see how far <em>financial freedom</em> is.</span></h1>
       <p class="lede"><span data-zh>把银行、信用卡、支付宝和微信的账单拖进来，Keel 自动记账、对账、分类，告诉你这个月钱花在哪、接下来现金够不够。数据只在你的 Mac 上。</span><span data-en>Drop in statements from your bank, cards, Alipay and WeChat. Keel books, reconciles and categorises them, then shows where this month's money went and whether your cash will last. Your data stays on your Mac.</span></p>
       <a class="download" id="dl" href="https://github.com/realAllenSong/Keel/releases/latest/download/Keel.dmg">
         <span data-zh style="font-size:18px;opacity:1;font-weight:500">免费下载 Keel for Mac</span><span data-en style="font-size:18px;opacity:1;font-weight:500">Download Keel for Mac — free</span>
         <span data-zh>Apple 公证 · 不用注册 · 不上传数据</span><span data-en>Notarized by Apple · no account · nothing uploaded</span>
       </a>
       <p class="req"><span data-zh>需要 Apple 芯片（M1 或更新）和 macOS 14 或更新。</span><span data-en>Requires Apple silicon (M1 or later) and macOS 14 or later.</span></p>
+      <p class="oss"><span data-zh>免费 · 开源（AGPL-3.0）</span><span data-en>Free · open source (AGPL-3.0)</span><a href="https://github.com/realAllenSong/Keel">GitHub</a><a href="https://github.com/realAllenSong/Keel/releases/latest"><span data-zh>版本说明</span><span data-en>Release notes</span></a></p>
     </div>
     <img class="mark" src="img/icon.png" alt="Keel 龙骨">
   </div>
@@ -113,15 +192,51 @@ html[lang="en"] [data-en] { display: revert; }
     </div>
   </section>
 
-  <section>
+  <section id="bills">
     <div class="eyebrow">03 /</div>
-    <h2><span data-zh>接下来的路，先算一遍</span><span data-en>Run the numbers before the big decisions</span></h2>
-    <p><span data-zh>从你的账本出发，回答三个问题：接下来 24 个月现金够不够、1 年 3 年 5 年后有多少、什么时候财务自由。换工作、搬家、学费这样的大事都能放进去一起算。</span><span data-en>Starting from your own ledger it answers three questions: will cash last the next 24 months, what you'll have in 1, 3 and 5 years, and when you could be financially free. Add job changes, moves or tuition and see them in the plan.</span></p>
-    <figure class="shot"><img src="img/plan.jpg" alt="Keel 的规划：三个问题开始" loading="lazy"></figure>
+    <h2><span data-zh>每个月雷打不动要出去多少</span><span data-en>What leaves every month, no matter what</span></h2>
+    <p><span data-zh>房租、话费、订阅、年费，从流水里自动找出来，标出每月几号扣、下次什么时候。价格一变就提醒；不是固定支出的，点一次「不算」就再也不出现。</span><span data-en>Rent, phone, subscriptions and annual fees are found in your history, with the day they land and when the next one is due. A price rise is flagged; anything that isn't a bill is dismissed once and stays gone.</span></p>
+    <figure class="shot"><span data-zh><img src="img/bills-zh.jpg" alt="Keel 的固定收支：每月固定支出和固定收入" loading="lazy"></span><span data-en><img src="img/bills-en.jpg" alt="Keel's Bills page: fixed costs each month and regular income" loading="lazy"></span><figcaption><span data-zh>示例数据。</span><span data-en>Sample data.</span></figcaption></figure>
+  </section>
+
+  <section id="holdings">
+    <div class="eyebrow">04 /</div>
+    <h2><span data-zh>投资赚了多少，跑赢大盘没有</span><span data-en>How your investing is doing, against the market</span></h2>
+    <p><span data-zh>连上券商后，每只股票的市值、成本和盈亏都在一页里，价格是延迟约 15 分钟的行情。再算一笔账：你每次买卖的钱，如果同一天拿去买 QQQ 或 SPY，现在会是多少。已实现盈亏按先买先卖计算，附短期、长期和洗售的报税口径。</span><span data-en>Link your brokers and every position's value, cost and gain sits on one page, at quotes delayed about 15 minutes. Then the honest comparison: the same money, on the same days, in QQQ or SPY. Realised gains are first in, first out, with a short/long-term and wash-sale view for taxes.</span></p>
+    <figure class="shot"><span data-zh><img src="img/holdings-zh.jpg" alt="Keel 的持仓：每只股票的成本和盈亏，以及和大盘的对比" loading="lazy"></span><span data-en><img src="img/holdings-en.jpg" alt="Keel's Holdings page: positions with cost and gain, compared with the market" loading="lazy"></span><figcaption><span data-zh>示例数据：一个虚构的券商账户。</span><span data-en>Sample data: a made-up brokerage account.</span></figcaption></figure>
   </section>
 
   <section>
-    <div class="eyebrow">04 /</div>
+    <div class="eyebrow">05 /</div>
+    <h2><span data-zh>接下来的路，先算一遍</span><span data-en>Run the numbers before the big decisions</span></h2>
+    <p><span data-zh>从你的账本出发，回答三个问题：接下来 24 个月现金够不够、1 年 3 年 5 年后有多少、什么时候财务自由。换工作、搬家、学费这样的大事都能放进去一起算。存钱目标按你最近每月存下的速度，算出什么时候达成。</span><span data-en>Starting from your own ledger it answers three questions: will cash last the next 24 months, what you'll have in 1, 3 and 5 years, and when you could be financially free. Add job changes, moves or tuition and see them in the plan. Savings goals show when you get there at the pace you have been saving.</span></p>
+    <figure class="shot"><img src="img/plan.jpg" alt="Keel 的规划：三个问题开始" loading="lazy"></figure>
+  </section>
+
+  <section id="privacy">
+    <div class="eyebrow">06 /</div>
+    <h2><span data-zh>你的账，只在你的 Mac 上</span><span data-en>Your books stay on your Mac</span></h2>
+    <ul class="facts">
+      <li><b><span data-zh>没有服务器</span><span data-en>No server</span></b><span data-zh>账单、账本和每晚的备份都是你电脑上的文件。不用注册，没有数据统计。</span><span data-en>Statements, the ledger and nightly backups are files on your Mac. No account, no telemetry.</span></li>
+      <li><b><span data-zh>只读的连接</span><span data-en>Read-only links</span></b><span data-zh>连银行和券商时，登录在它们自己的页面完成；Keel 只保存只读授权，放在 macOS 钥匙串里。</span><span data-en>Bank and broker sign-in happens on their own pages; Keel keeps only a read-only key, in the macOS Keychain.</span></li>
+      <li><b><span data-zh>只在需要时联网</span><span data-en>Online only when needed</span></b><span data-zh>你设置的银行和邮箱连接、行情数据（FRED、Yahoo Finance）、检查新版本。</span><span data-en>The bank and mailbox links you set up, market data (FRED, Yahoo Finance) and the update check.</span></li>
+      <li><b><span data-zh>代码公开</span><span data-en>Open code</span></b><span data-zh>源代码按 AGPL-3.0 公开在 GitHub，任何人都可以检查它做了什么。</span><span data-en>The source is public on GitHub under AGPL-3.0, so anyone can check what it does.</span></li>
+    </ul>
+  </section>
+
+  <section id="faq">
+    <div class="eyebrow">07 /</div>
+    <h2><span data-zh>常见问题</span><span data-en>Questions</span></h2>
+    <details><summary><span data-zh>Keel 免费吗？</span><span data-en>Is Keel free?</span></summary><p><span data-zh>免费，并且按 AGPL-3.0 开源。它能连接的银行数据服务（Plaid、SimpleFIN Bridge、SnapTrade）由第三方提供，有各自的收费方式；只用账单文件就完全不需要它们。</span><span data-en>Yes, and open source under AGPL-3.0. The bank-data services it can link to (Plaid, SimpleFIN Bridge, SnapTrade) are run by others with their own plans; with statement files alone you need none of them.</span></p></details>
+    <details><summary><span data-zh>我的数据存在哪里？</span><span data-en>Where is my data?</span></summary><p><span data-zh>全部在你的 Mac 上：账单、账本和备份在 <code>~/Library/Application Support/Keel</code>，银行授权在钥匙串。卸载 App 不会删掉它们。</span><span data-en>On your Mac: statements, ledger and backups in <code>~/Library/Application Support/Keel</code>, bank keys in the Keychain. Removing the app does not delete them.</span></p></details>
+    <details><summary><span data-zh>支持哪些银行和平台？</span><span data-en>Which banks and services?</span></summary><p><span data-zh>账单文件：Chase、American Express、Bank of America、Charles Schwab、Fidelity、盈透、支付宝、微信支付、招商银行、宁波银行、OKX；其他银行的 CSV 或 Excel 教一次就认得。也可以通过 Plaid、SimpleFIN、SnapTrade（含 Robinhood、moomoo、Kraken 等）直接连接。</span><span data-en>Statement files from Chase, American Express, Bank of America, Charles Schwab, Fidelity, Interactive Brokers, Alipay, WeChat Pay, China Merchants Bank, Bank of Ningbo and OKX; any other CSV or Excel layout is taught once. Or link directly through Plaid, SimpleFIN and SnapTrade (Robinhood, moomoo, Kraken and more).</span></p></details>
+    <details><summary><span data-zh>支持哪些币种？</span><span data-en>Which currencies?</span></summary><p><span data-zh>美元和人民币。其他币种的持仓会折算成这两种。</span><span data-en>US dollars and Chinese yuan. Holdings in other currencies convert into them.</span></p></details>
+    <details><summary><span data-zh>有 iPhone 或 Windows 版吗？</span><span data-en>Is there an iPhone or Windows version?</span></summary><p><span data-zh>暂时没有，目前只有 Mac 版。</span><span data-en>Not yet; Keel is a Mac app.</span></p></details>
+    <details><summary><span data-zh>能让 AI 助手帮我记账吗？</span><span data-en>Can my AI assistant use it?</span></summary><p><span data-zh>可以。Keel 自带 <code>keel</code> 命令行和 MCP 服务，Claude、Codex 等能在你的 Mac 上查询和更新账本，PDF 或截图里的账单也能交给它们整理后导入。</span><span data-en>Yes. Keel ships a <code>keel</code> command line and an MCP server, so Claude, Codex and others can query and update your ledger on your Mac, and turn a PDF or screenshot statement into lines Keel imports.</span></p></details>
+  </section>
+
+  <section>
+    <div class="eyebrow">08 /</div>
     <h2><span data-zh>安装只要一分钟</span><span data-en>Install in a minute</span></h2>
     <ol class="steps">
       <li><span><span data-zh>下载 Keel.dmg 并打开。</span><span data-en>Download Keel.dmg and open it.</span></span></li>
@@ -129,11 +244,19 @@ html[lang="en"] [data-en] { display: revert; }
       <li><span><span data-zh>打开 Keel，把第一份账单拖进窗口。以后有新版本，Keel 会在设置里提示你一键更新。</span><span data-en>Open Keel and drop your first statement into the window. New versions install from Settings with one click.</span></span></li>
     </ol>
     <p class="note"><span data-zh>账单和账本只存在你的 Mac 上，不需要注册，也不会上传到任何服务器。目前支持美元和人民币两种货币。</span><span data-en>Statements and your ledger stay on your Mac: no account, nothing uploaded. Keel currently supports US dollars and Chinese yuan.</span></p>
+    <p style="margin-top:32px"><a class="download" href="https://github.com/realAllenSong/Keel/releases/latest/download/Keel.dmg">
+      <span data-zh style="font-size:18px;opacity:1;font-weight:500">免费下载 Keel for Mac</span><span data-en style="font-size:18px;opacity:1;font-weight:500">Download Keel for Mac — free</span>
+      <span data-zh>Apple 公证 · 不用注册 · 不上传数据</span><span data-en>Notarized by Apple · no account · nothing uploaded</span>
+    </a></p>
   </section>
 
   <footer>
-    <span>Keel 龙骨 · <span data-zh>免费</span><span data-en>Free</span></span>
-    <a href="https://github.com/realAllenSong/Keel/issues"><span data-zh>反馈问题</span><span data-en>Report a problem</span></a>
+    <span>Keel 龙骨 · © 2026 realAllenSong · <a href="https://github.com/realAllenSong/Keel/blob/main/LICENSE">AGPL-3.0</a></span>
+    <span class="links">
+      <a href="https://github.com/realAllenSong/Keel"><span data-zh>源代码</span><span data-en>Source code</span></a>
+      <a href="https://github.com/realAllenSong/Keel/releases"><span data-zh>版本记录</span><span data-en>Releases</span></a>
+      <a href="https://github.com/realAllenSong/Keel/issues"><span data-zh>反馈问题</span><span data-en>Report a problem</span></a>
+    </span>
   </footer>
 </div>
 <script>

@@ -20,9 +20,13 @@ struct BillsView: View {
                     empty
                 } else {
                     head(b)
-                    if !b.monthly.isEmpty { section(1, L("每月"), b.monthly, when: L("每月几号"), total: monthlyTotal(b)) }
-                    if !b.annual.isEmpty { section(2, L("每年"), b.annual, when: L("每年几月"), note: yearlyNote(b)) }
-                    if !b.income.isEmpty { section(3, L("固定收入"), b.income, when: L("每月几号"), dismissable: false) }
+                    // Numbered in the order shown: a page without yearly bills goes 01, 02.
+                    let monthlyN = 1
+                    let annualN = (b.monthly.isEmpty ? 0 : 1) + 1
+                    let incomeN = (b.monthly.isEmpty ? 0 : 1) + (b.annual.isEmpty ? 0 : 1) + 1
+                    if !b.monthly.isEmpty { section(monthlyN, L("每月"), b.monthly, when: L("每月几号"), total: monthlyTotal(b)) }
+                    if !b.annual.isEmpty { section(annualN, L("每年"), b.annual, when: L("每年几月"), note: yearlyNote(b)) }
+                    if !b.income.isEmpty { section(incomeN, L("固定收入"), b.income, when: L("每月几号"), dismissable: false) }
                     if !b.dismissed.isEmpty { dismissed(b.dismissed) }
                 }
             } else if data.error == nil {
@@ -118,6 +122,7 @@ struct BillsView: View {
                                 Text(L("刚开始：目前只见到两次扣款")).font(.ui(11.5)).foregroundStyle(Theme.muted)
                             }
                         }
+                        .frame(maxWidth: .infinity, alignment: .leading)  // every table spans the column
                         Text(Format.account(s.category)).font(.ui(12.5)).foregroundStyle(Theme.ink2).lineLimit(1)
                         Text(Format.account(s.account)).font(.ui(12.5)).foregroundStyle(Theme.ink2).lineLimit(1)
                         Text(s.cadence == "annual" ? L("{m} 月", ["m": s.month ?? 0]) : L("{d} 日", ["d": s.day]))

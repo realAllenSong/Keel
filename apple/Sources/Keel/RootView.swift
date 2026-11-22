@@ -119,7 +119,7 @@ private struct PlaceTabs: View {
     var body: some View {
         // 每月: the month in progress (现在) and, stepping back, the closed months (回顾).
         // 持仓 appears once a connected broker has reported positions or trades.
-        let items: [(Top, String)] = [(.now, L("每月")), (.calendar, L("日历")), (.bills, L("账单"))]
+        let items: [(Top, String)] = [(.now, L("每月")), (.calendar, L("日历")), (.bills, L("固定收支"))]
             + (model.hasHoldings ? [(.holdings, L("持仓"))] : [])
             + [(.plan, L("规划"))]
         UnderlineTabs(

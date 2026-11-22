@@ -1,0 +1,31 @@
+{
+ "keel_connector": 1,
+ "fetched_at": "2026-10-30T21:00:00+00:00",
+ "source": "snaptrade",
+ "account_id": "demo-brokerage",
+ "institution": "Demo Brokerage",
+ "type": "Assets",
+ "currency": "USD",
+ "name": "Individual",
+ "mask": "0009",
+ "asset_class": "brokerage",
+ "balances": [],
+ "valuations": [{"date": "2026-10-30", "value": "23580.00"}],
+ "transactions": [],
+ "holdings_as_of": "2026-10-30",
+ "holdings": [
+  {"symbol": "QQQ", "kind": "etf", "quantity": "12", "price": "640.00", "cost_basis": "520.00", "cost_basis_per_unit": true, "currency": "USD"},
+  {"symbol": "VOO", "kind": "etf", "quantity": "10", "price": "600.00", "cost_basis": "520.00", "cost_basis_per_unit": true, "currency": "USD"},
+  {"symbol": "NVDA", "kind": "stock", "quantity": "25", "price": "180.00", "cost_basis": "105.00", "cost_basis_per_unit": true, "currency": "USD"},
+  {"symbol": "AAPL", "kind": "stock", "quantity": "15", "price": "260.00", "cost_basis": "210.00", "cost_basis_per_unit": true, "currency": "USD"},
+  {"symbol": "SPAXX", "kind": "fund", "quantity": "1500", "price": "1.00", "cost_basis": "1.00", "cost_basis_per_unit": true, "currency": "USD", "cash_equivalent": true}
+ ],
+ "trades": [
+  {"id": "d1", "date": "2025-01-10", "action": "BUY", "symbol": "QQQ", "kind": "etf", "quantity": "8", "price": "500.00", "amount": "-4000.00", "currency": "USD", "description": "YOU BOUGHT QQQ"},
+  {"id": "d2", "date": "2025-03-14", "action": "BUY", "symbol": "NVDA", "kind": "stock", "quantity": "30", "price": "105.00", "amount": "-3150.00", "currency": "USD", "description": "YOU BOUGHT NVDA"},
+  {"id": "d3", "date": "2025-06-02", "action": "BUY", "symbol": "VOO", "kind": "etf", "quantity": "10", "price": "520.00", "amount": "-5200.00", "currency": "USD", "description": "YOU BOUGHT VOO"},
+  {"id": "d4", "date": "2025-09-15", "action": "BUY", "symbol": "AAPL", "kind": "stock", "quantity": "15", "price": "210.00", "amount": "-3150.00", "currency": "USD", "description": "YOU BOUGHT AAPL"},
+  {"id": "d5", "date": "2025-11-03", "action": "BUY", "symbol": "QQQ", "kind": "etf", "quantity": "4", "price": "560.00", "amount": "-2240.00", "currency": "USD", "description": "YOU BOUGHT QQQ"},
+  {"id": "d6", "date": "2026-04-20", "action": "SELL", "symbol": "NVDA", "kind": "stock", "quantity": "-5", "price": "170.00", "amount": "850.00", "currency": "USD", "description": "YOU SOLD NVDA"}
+ ]
+}
