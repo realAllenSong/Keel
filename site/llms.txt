@@ -5,7 +5,7 @@
 ## Key facts
 
 - Platform: macOS 14 or later on Apple silicon; signed with an Apple Developer ID and notarized
-- Price: free; source at https://github.com/realAllenSong/Keel under AGPL-3.0 (attribution "Based on Keel by Zhiyuan Song" required)
+- Price: free; source at https://github.com/realAllenSong/Keel under AGPL-3.0 (attribution required; see NOTICE)
 - Licensing: free for individuals; companies may use it under the AGPL-3.0, and a commercial licence for closed-source products or services, or other terms, is available from song@entropinia.com
 - Data: statements, ledger and backups in ~/Library/Application Support/Keel; bank and broker keys in the macOS Keychain
 - Network: only the connections the user sets up (Plaid, SimpleFIN Bridge, SnapTrade, IBKR Flex, OKX, a mailbox), market data (FRED, Yahoo Finance) and the GitHub update check
