@@ -212,6 +212,9 @@ Keel is free software under the [GNU Affero General Public License v3](LICENSE).
 keep the attribution "Based on Keel by realAllenSong" (see [NOTICE](NOTICE)) and publish your source
 under the same license.
 
+**Commercial licence:** to use Keel in a closed-source product or service, or on terms other than
+the AGPL, [contact us](mailto:song@entropinia.com).
+
 ## Acknowledgments
 
 Market history from [FRED](https://fred.stlouisfed.org) and Robert Shiller's
