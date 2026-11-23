@@ -1,7 +1,7 @@
 # Keel Contributor License Agreement
 
-Thank you for contributing to Keel. This agreement is between you ("you") and realAllenSong, the
-owner of the Keel project ("the owner"). It covers every contribution you submit to Keel, now or
+Thank you for contributing to Keel. This agreement is between you ("you") and Zhiyuan Song (GitHub:
+realAllenSong), the owner of the Keel project ("the owner"). It covers every contribution you submit to Keel, now or
 later: code, documentation, translations, statement profiles, images and any other material
 ("your contribution").
 

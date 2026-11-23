@@ -151,7 +151,7 @@ Chase、Amex 和 Bank of America 的账单格式是 `backend/pf/importers/profil
 
 ## 许可证
 
-Keel 是自由软件，采用 [GNU Affero 通用公共许可证 v3](LICENSE)。版权所有 © 2026 realAllenSong。分发 Keel 或基于它修改的作品，或者通过网络把它提供给别人使用时，必须保留署名 "Based on Keel by realAllenSong"（见 [NOTICE](NOTICE)），并以同样的许可证公开源代码。
+Keel 是自由软件，采用 [GNU Affero 通用公共许可证 v3](LICENSE)。版权所有 © 2026 Zhiyuan Song。分发 Keel 或基于它修改的作品，或者通过网络把它提供给别人使用时，必须保留署名 "Based on Keel by Zhiyuan Song"（见 [NOTICE](NOTICE)），并以同样的许可证公开源代码。
 
 **商业授权：**如果想在闭源产品或服务中使用 Keel，或需要 AGPL 以外的条款，请[联系我们](mailto:song@entropinia.com)。
 

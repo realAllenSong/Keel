@@ -281,7 +281,7 @@ extension L10n {
         "这只的历史价格暂时取不到。": "This symbol's price history can't be fetched right now.",
         "上个月的账齐了、对上了，就自动结账": "Close last month by itself once it is complete and reconciled",
         "结账是记下那个月当时的收支；之后数字再变会提醒你。你手动重新打开的月份不会被自动结掉。": "Closing records what the month's income and spending were; if they change later you are told. A month you reopened yourself is not closed automatically.",
-        "Keel 龙骨 · realAllenSong 作品 · 开源许可 AGPL-3.0": "Keel by realAllenSong · licensed under AGPL-3.0",
+        "Keel 龙骨 · Zhiyuan Song 作品 · 开源许可 AGPL-3.0": "Keel by Zhiyuan Song · licensed under AGPL-3.0",
         "源代码": "Source code",
         "固定收支": "Bills",
         "开机后 Keel 在菜单栏待命，自动导入下载的账单、按时提醒。": "After login Keel waits in the menu bar, imports statements you download and sends alerts on time.",

@@ -254,7 +254,7 @@ struct UpdateSection: View {
           VStack(alignment: .leading, spacing: 12) {
             // The program's Appropriate Legal Notices (AGPL-3.0, NOTICE): keep in any work based on it.
             HStack(spacing: 6) {
-                Text(L("Keel 龙骨 · realAllenSong 作品 · 开源许可 AGPL-3.0")).font(.ui(12)).foregroundStyle(Theme.muted)
+                Text(L("Keel 龙骨 · Zhiyuan Song 作品 · 开源许可 AGPL-3.0")).font(.ui(12)).foregroundStyle(Theme.muted)
                 Link(L("源代码"), destination: URL(string: "https://github.com/realAllenSong/Keel")!)
                     .font(.ui(12))
             }
