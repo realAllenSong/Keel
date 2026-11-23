@@ -1,0 +1,23 @@
+# Keel 龙骨
+
+> Keel is a free, open-source (AGPL-3.0) personal finance app for the Mac. Bank, card, Alipay and WeChat Pay statements become a double-entry ledger reconciled against the banks; it shows monthly spending, fixed bills and subscriptions, investment holdings against the market, savings goals and long-range planning. All data stays on the user's Mac: no account, no server, no telemetry.
+
+## Key facts
+
+- Platform: macOS 14 or later on Apple silicon; signed with an Apple Developer ID and notarized
+- Price: free; source at https://github.com/realAllenSong/Keel under AGPL-3.0 (attribution "Based on Keel by realAllenSong" required)
+- Licensing: free for individuals; companies may use it under the AGPL-3.0, and a commercial licence for closed-source products or services, or other terms, is available from song@entropinia.com
+- Data: statements, ledger and backups in ~/Library/Application Support/Keel; bank and broker keys in the macOS Keychain
+- Network: only the connections the user sets up (Plaid, SimpleFIN Bridge, SnapTrade, IBKR Flex, OKX, a mailbox), market data (FRED, Yahoo Finance) and the GitHub update check
+- Statement files read: Chase, American Express, Bank of America, Charles Schwab, Fidelity, Interactive Brokers, Alipay, WeChat Pay, China Merchants Bank, Bank of Ningbo, OKX; other CSV or Excel layouts are taught once
+- Currencies: US dollars and Chinese yuan (holdings in other currencies are converted)
+- Pages: Monthly (daily spending table, categories against a usual month, the year), Calendar, Bills (recurring costs and income, price changes), Holdings (positions, gains, realised gains with a tax view, the same money in QQQ or SPY, CSV export of accounts, holdings and trades), Plan (cash for 24 months, net worth in 1/3/5 years, financial independence, backtests, housing calculators, savings goals)
+- Automation: daily sync at 7:30 even when the app is closed, statements picked up from Downloads or a mailbox, months close themselves once complete, nightly verified backups, in-app updates
+- Interface: Chinese and English, light and dark
+- Agents: a `keel` command line (JSON output), a skill for coding agents (skills/keel/SKILL.md) and an MCP server (`keel mcp`, 20 tools)
+
+## Links
+
+- Website and download: https://realallensong.github.io/Keel/
+- Latest release: https://github.com/realAllenSong/Keel/releases/latest
+- Source and README: https://github.com/realAllenSong/Keel
