@@ -36,15 +36,16 @@ real file's columns in the pull request instead of attaching it.
 ## License and contributor agreement
 
 Keel is offered under the [GNU AGPL v3](LICENSE) (with the attribution terms in [NOTICE](NOTICE))
-and, separately, under commercial licences. So that both stay possible, by opening a pull request
-you agree that:
+and, separately, under commercial licences. So that both stay possible, every contributor signs the
+[Contributor License Agreement](CLA.md) before their first pull request is merged. In short:
 
 - the contribution is your own original work, and you have the right to submit it;
 - you assign the copyright in your contribution to realAllenSong. Where an assignment is not
   possible, you grant realAllenSong a perpetual, irrevocable, worldwide, royalty-free licence to
   use, modify, sublicense and relicense it, including under commercial terms.
 
-Your contribution is released to everyone under the AGPL v3.
+Your contribution is released to everyone under the AGPL v3. To sign, post the comment the CLA bot
+asks for on your pull request; it covers all your later contributions too.
 
 ## Questions
 
