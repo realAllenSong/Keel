@@ -23,8 +23,8 @@
 </p>
 
 <p align="center">
-  <img src="site/img/holdings-zh.jpg" width="820" alt="Keel 的持仓页：每只股票的成本和盈亏，以及同样的钱买 QQQ、SPY 的结果" />
-  <br/><sub>截图用的是虚构的家庭和券商账户。</sub>
+  <a href="https://realallensong.github.io/Keel/#film"><img src="site/media/keel-demo.gif" width="820" alt="Keel 导入账单，再打开固定收支和持仓页" /></a>
+  <br/><sub>用的是虚构的家庭和券商账户。<a href="https://realallensong.github.io/Keel/#film">看带声音的完整视频</a>。</sub>
 </p>
 
 ---

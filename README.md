@@ -23,8 +23,8 @@
 </p>
 
 <p align="center">
-  <img src="site/img/holdings-en.jpg" width="820" alt="Keel's Holdings page: positions with cost and gain, and the same money in QQQ and SPY" />
-  <br/><sub>Screenshots use a made-up household and brokerage account.</sub>
+  <a href="https://realallensong.github.io/Keel/#film"><img src="site/media/keel-demo.gif" width="820" alt="Keel importing statements, then its Bills and Holdings pages" /></a>
+  <br/><sub>Made-up household and brokerage account. <a href="https://realallensong.github.io/Keel/#film">Watch the full video with sound</a>.</sub>
 </p>
 
 ---
