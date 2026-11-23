@@ -5,7 +5,7 @@
 ## Key facts
 
 - Platform: macOS 14 or later on Apple silicon; signed with an Apple Developer ID and notarized
-- Price: free; source at https://github.com/realAllenSong/Keel under AGPL-3.0 (attribution "Based on Keel by realAllenSong" required)
+- Price: free; source at https://github.com/realAllenSong/Keel under AGPL-3.0 (attribution required; see NOTICE)
 - Licensing: free for individuals; companies may use it under the AGPL-3.0, and a commercial licence for closed-source products or services, or other terms, is available from song@entropinia.com
 - Data: statements, ledger and backups in ~/Library/Application Support/Keel; bank and broker keys in the macOS Keychain
 - Network: only the connections the user sets up (Plaid, SimpleFIN Bridge, SnapTrade, IBKR Flex, OKX, a mailbox), market data (FRED, Yahoo Finance) and the GitHub update check
@@ -21,3 +21,10 @@
 - Website and download: https://keel.entropinia.com/
 - Latest release: https://github.com/realAllenSong/Keel/releases/latest
 - Source and README: https://github.com/realAllenSong/Keel
+
+## Guides
+
+- [A Mac budgeting app that imports Alipay and WeChat Pay](https://keel.entropinia.com/guides/budget-app-alipay-wechat/): US banks and brokers plus Alipay, WeChat Pay and OKX in one double-entry ledger.
+- [Budgeting without linking your bank](https://keel.entropinia.com/guides/budgeting-without-bank-login/): Keel vs YNAB, Monarch Money and Copilot Money.
+- [支持支付宝和微信账单的 Mac 记账软件](https://keel.entropinia.com/zh/guides/alipay-wechat-mac-budget/) (Chinese)
+- [不用交出银行密码的记账软件](https://keel.entropinia.com/zh/guides/no-bank-login-budget/) (Chinese)
