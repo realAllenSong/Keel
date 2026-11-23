@@ -58,7 +58,9 @@
     {"@type": "Question", "name": "支持哪些币种？",
      "acceptedAnswer": {"@type": "Answer", "text": "美元和人民币。其他币种的持仓会折算成这两种。"}},
     {"@type": "Question", "name": "有 iPhone 或 Windows 版吗？",
-     "acceptedAnswer": {"@type": "Answer", "text": "暂时没有，目前只有 Mac 版，需要 Apple 芯片和 macOS 14 或更新。"}}
+     "acceptedAnswer": {"@type": "Answer", "text": "暂时没有，目前只有 Mac 版，需要 Apple 芯片和 macOS 14 或更新。"}},
+    {"@type": "Question", "name": "公司能用 Keel 吗？",
+     "acceptedAnswer": {"@type": "Answer", "text": "个人使用永远免费。公司可以按 AGPL-3.0 使用；如果要把 Keel 放进闭源的产品或服务，或者需要 AGPL 以外的条款，请联系 song@entropinia.com 购买商业授权。"}}
   ]
 }
 </script>
@@ -433,6 +435,7 @@ footer a:hover { color: var(--ink); }
       <h2><span data-zh>常见问题</span><span data-en>Questions</span></h2>
       <div class="faq">
         <details><summary><span data-zh>Keel 免费吗？</span><span data-en>Is Keel free?</span></summary><p><span data-zh>免费，并且按 AGPL-3.0 开源。它能连接的银行数据服务（Plaid、SimpleFIN Bridge、SnapTrade）由第三方提供，有各自的收费方式；只用账单文件就完全不需要它们。</span><span data-en>Yes, and open source under AGPL-3.0. The bank-data services it can link to (Plaid, SimpleFIN Bridge, SnapTrade) are run by others with their own plans; with statement files alone you need none of them.</span></p></details>
+        <details><summary><span data-zh>公司能用 Keel 吗？</span><span data-en>Can a company use Keel?</span></summary><p><span data-zh>个人使用永远免费。公司可以按 AGPL-3.0 使用；如果要把 Keel 放进闭源的产品或服务，或者需要 AGPL 以外的条款，请<a href="mailto:song@entropinia.com">联系我们</a>购买商业授权。</span><span data-en>Keel is free for individuals, always. Companies can use it under the AGPL-3.0; to build it into a closed-source product or service, or for terms other than the AGPL, <a href="mailto:song@entropinia.com">contact us</a> for a commercial licence.</span></p></details>
         <details><summary><span data-zh>我的数据存在哪里？</span><span data-en>Where is my data?</span></summary><p><span data-zh>全部在你的 Mac 上：账单、账本和备份在 <code>~/Library/Application Support/Keel</code>，银行授权在钥匙串。卸载 App 不会删掉它们。</span><span data-en>On your Mac: statements, ledger and backups in <code>~/Library/Application Support/Keel</code>, bank keys in the Keychain. Removing the app does not delete them.</span></p></details>
         <details><summary><span data-zh>支持哪些银行和平台？</span><span data-en>Which banks and services?</span></summary><p><span data-zh>账单文件：Chase、American Express、Bank of America、Charles Schwab、Fidelity、盈透、支付宝、微信支付、招商银行、宁波银行、OKX；其他银行的 CSV 或 Excel 教一次就认得。也可以通过 Plaid、SimpleFIN、SnapTrade（含 Robinhood、moomoo、Kraken 等）直接连接。</span><span data-en>Statement files from Chase, American Express, Bank of America, Charles Schwab, Fidelity, Interactive Brokers, Alipay, WeChat Pay, China Merchants Bank, Bank of Ningbo and OKX; any other CSV or Excel layout is taught once. Or link directly through Plaid, SimpleFIN and SnapTrade (Robinhood, moomoo, Kraken and more).</span></p></details>
         <details><summary><span data-zh>支持哪些币种？</span><span data-en>Which currencies?</span></summary><p><span data-zh>美元和人民币。其他币种的持仓会折算成这两种。</span><span data-en>US dollars and Chinese yuan. Holdings in other currencies convert into them.</span></p></details>
@@ -458,6 +461,7 @@ footer a:hover { color: var(--ink); }
       <a href="https://github.com/realAllenSong/Keel"><span data-zh>源代码</span><span data-en>Source code</span></a>
       <a href="https://github.com/realAllenSong/Keel/releases"><span data-zh>版本记录</span><span data-en>Releases</span></a>
       <a href="https://github.com/realAllenSong/Keel/issues"><span data-zh>反馈问题</span><span data-en>Report a problem</span></a>
+      <a href="mailto:song@entropinia.com"><span data-zh>商业授权</span><span data-en>Commercial licence</span></a>
     </nav>
   </div>
 </footer>
