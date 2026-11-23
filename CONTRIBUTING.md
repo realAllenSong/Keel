@@ -33,11 +33,18 @@ real file's columns in the pull request instead of attaching it.
   `apple/Sources/KeelCore/L10nEN.swift` or `backend/pf/i18n_en.py` (the checks fail otherwise).
 - Say what the change does and why.
 
-## License
+## License and contributor agreement
 
-By contributing you agree that your changes are released under the
-[GNU AGPL v3](LICENSE) that covers the project, with the attribution terms in [NOTICE](NOTICE).
-You keep the copyright to your contribution.
+Keel is offered under the [GNU AGPL v3](LICENSE) (with the attribution terms in [NOTICE](NOTICE))
+and, separately, under commercial licences. So that both stay possible, by opening a pull request
+you agree that:
+
+- the contribution is your own original work, and you have the right to submit it;
+- you assign the copyright in your contribution to realAllenSong. Where an assignment is not
+  possible, you grant realAllenSong a perpetual, irrevocable, worldwide, royalty-free licence to
+  use, modify, sublicense and relicense it, including under commercial terms.
+
+Your contribution is released to everyone under the AGPL v3.
 
 ## Questions
 

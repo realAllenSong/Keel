@@ -13,6 +13,9 @@ Additional terms, under section 7(b) of the license:
   Keel, Settings › Version and updates, 设置 › 版本与更新) and in the documentation or about page of their work, and must
   not present the work as wholly their own.
 
+Commercial licence: to use Keel in a closed-source product or service, or on terms other than
+the AGPL, contact song@entropinia.com.
+
 Third-party components keep their own licenses: the bundled Geist fonts are under the SIL Open
 Font License 1.1 (apple/Fonts). Market prices fetched at run time come from Yahoo Finance
 through yfinance and FX rates from FRED; their terms of use apply to that data.
