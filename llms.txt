@@ -18,6 +18,6 @@
 
 ## Links
 
-- Website and download: https://realallensong.github.io/Keel/
+- Website and download: https://keel.entropinia.com/
 - Latest release: https://github.com/realAllenSong/Keel/releases/latest
 - Source and README: https://github.com/realAllenSong/Keel
