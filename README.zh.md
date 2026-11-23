@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="README.md">English</a> · <a href="https://realallensong.github.io/Keel/">官网</a> · <a href="https://realallensong.github.io/Keel/">下载</a>
+  <a href="README.md">English</a> · <a href="https://keel.entropinia.com/">官网</a> · <a href="https://keel.entropinia.com/">下载</a>
 </p>
 
 <p align="center">
@@ -23,8 +23,8 @@
 </p>
 
 <p align="center">
-  <a href="https://realallensong.github.io/Keel/#film"><img src="site/media/keel-demo.gif" width="820" alt="Keel 导入账单，再打开固定收支和持仓页" /></a>
-  <br/><sub>用的是虚构的家庭和券商账户。<a href="https://realallensong.github.io/Keel/#film">看带声音的完整视频</a>。</sub>
+  <a href="https://keel.entropinia.com/#film"><img src="site/media/keel-demo.gif" width="820" alt="Keel 导入账单，再打开固定收支和持仓页" /></a>
+  <br/><sub>用的是虚构的家庭和券商账户。<a href="https://keel.entropinia.com/#film">看带声音的完整视频</a>。</sub>
 </p>
 
 ---
@@ -66,7 +66,7 @@ Keel 是给"钱不止放在一个地方"的人用的家庭账本：美国的银�
 
 ## 下载
 
-在[官网](https://realallensong.github.io/Keel/)或[最新版本页](https://github.com/realAllenSong/Keel/releases/latest)下载 **Keel.dmg**，打开后把 Keel 拖进"应用程序"。安装包有 Apple 开发者签名并经过公证，打开时不会有警告。
+在[官网](https://keel.entropinia.com/)或[最新版本页](https://github.com/realAllenSong/Keel/releases/latest)下载 **Keel.dmg**，打开后把 Keel 拖进"应用程序"。安装包有 Apple 开发者签名并经过公证，打开时不会有警告。
 
 需要 Apple 芯片（M1 或更新）的 Mac，以及 macOS 14 或更新。
 

@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="README.zh.md">中文文档</a> · <a href="https://realallensong.github.io/Keel/">Website</a> · <a href="https://realallensong.github.io/Keel/">Download</a>
+  <a href="README.zh.md">中文文档</a> · <a href="https://keel.entropinia.com/">Website</a> · <a href="https://keel.entropinia.com/">Download</a>
 </p>
 
 <p align="center">
@@ -23,8 +23,8 @@
 </p>
 
 <p align="center">
-  <a href="https://realallensong.github.io/Keel/#film"><img src="site/media/keel-demo.gif" width="820" alt="Keel importing statements, then its Bills and Holdings pages" /></a>
-  <br/><sub>Made-up household and brokerage account. <a href="https://realallensong.github.io/Keel/#film">Watch the full video with sound</a>.</sub>
+  <a href="https://keel.entropinia.com/#film"><img src="site/media/keel-demo.gif" width="820" alt="Keel importing statements, then its Bills and Holdings pages" /></a>
+  <br/><sub>Made-up household and brokerage account. <a href="https://keel.entropinia.com/#film">Watch the full video with sound</a>.</sub>
 </p>
 
 ---
@@ -90,7 +90,7 @@ uploaded, and there is no account to make.
 
 ## Download
 
-Download **Keel.dmg** from the [website](https://realallensong.github.io/Keel/) or the
+Download **Keel.dmg** from the [website](https://keel.entropinia.com/) or the
 [latest release](https://github.com/realAllenSong/Keel/releases/latest), open it and drag Keel
 into Applications. It is signed with an Apple Developer ID and notarized, so it opens without
 warnings.
