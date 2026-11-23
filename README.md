@@ -207,9 +207,8 @@ Issues and pull requests are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-Keel is free software under the [GNU Affero General Public License v3](LICENSE). Copyright ©
-2026 Zhiyuan Song. If you share Keel or a work based on it, or run it for others over a network,
-keep the attribution "Based on Keel by Zhiyuan Song" (see [NOTICE](NOTICE)) and publish your source
+Keel is free software under the [GNU Affero General Public License v3](LICENSE). If you share Keel or a work based on it, or run it for others over a network,
+keep the attribution required by [NOTICE](NOTICE) and publish your source
 under the same license.
 
 **Commercial licence:** to use Keel in a closed-source product or service, or on terms other than
