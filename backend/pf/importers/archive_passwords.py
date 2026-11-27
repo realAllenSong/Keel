@@ -13,7 +13,7 @@ from pf.connectors.base import Secrets
 from pf.importers.archive import PasswordProvider
 from pf.importers.archive import provider_for_member as provider_for_member
 
-_PROVIDERS: tuple[PasswordProvider, ...] = ("alipay", "wechat", "cmb", "ningbo", "other")
+_PROVIDERS: tuple[PasswordProvider, ...] = ("alipay", "wechat", "cmb", "ningbo", "boc", "other")
 _LOCK = threading.Lock()
 
 
@@ -57,6 +57,10 @@ class ArchivePasswords:
                 key,
                 {"passwords": passwords, "updated_at": dt.datetime.now(dt.UTC).isoformat()},
             )
+
+    @staticmethod
+    def providers() -> tuple[PasswordProvider, ...]:
+        return _PROVIDERS
 
     @classmethod
     def candidates(cls, provider: str) -> list[str]:

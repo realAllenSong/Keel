@@ -20,7 +20,7 @@ import httpx
 
 from pf.connectors.base import ConnectorError, FetchResult, Field
 from pf.i18n import tr
-from pf.importers.archive import is_zip, provider_for_member, statement_zip
+from pf.importers.archive import PDF_PROVIDERS, is_locked, provider_for_member, statement_zip
 from pf.settings import get_settings
 
 LOOKBACK_DAYS = 45
@@ -189,7 +189,7 @@ class Mailbox:
             name = _decode(part.get_filename())
             if not name or not name.lower().endswith(EXTS):
                 continue
-            if name.lower().endswith(".pdf") and provider_for_member(name) != "cmb":
+            if name.lower().endswith(".pdf") and provider_for_member(name) not in PDF_PROVIDERS:
                 continue
             payload = part.get_payload(decode=True)
             if not isinstance(payload, bytes) or not payload:
@@ -198,8 +198,8 @@ class Mailbox:
             path = out_dir / f"{uid}-{safe}"
             path.write_bytes(payload)
             looks_like_bill = BILL_NAME.search(name) or BILL_NAME.search(subject)
-            if (is_zip(path) and statement_zip(path) is not None) or (
-                not is_zip(path) and looks_like_bill
+            if (is_locked(path) and statement_zip(path) is not None) or (
+                not is_locked(path) and looks_like_bill
             ):
                 found.append(path)
             else:

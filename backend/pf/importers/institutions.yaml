@@ -213,6 +213,47 @@
     - If personal online banking offers CSV or Excel, export one month with date, amount, description and balance columns.
     - There is no dedicated CMB importer yet. Drop a table into Keel and use the import wizard to check columns and amount signs before adding more months.
     note: Automatic CMB sync is not implemented. Menus and formats depend on your app version. PDF-only exports need additional format support.
+- id: boc
+  name: 中国银行
+  kind: bank
+  importers:
+  - boc
+  export_url: https://www.boc.cn/
+  steps_verified: false
+  steps:
+  - 在中国银行 App 首页搜索「交易流水打印」，点「立即申请」。
+  - 选要导入的借记卡和时间范围（先导最近一个月核对），填写接收邮箱，提交。
+  - 在「申请记录」里能看到打开文件的密码，记下来。
+  - 把邮件附件里的 PDF 下载后拖进 Keel；第一次会问你密码，可以让 Keel 记住，以后同一家的文件自动打开。
+  supported: true
+  note: 读取 PDF 里的「交易流水明细清单」表格，余额列用于核对；尚未用真实导出验证。中国银行没有给个人用的自动同步接口，以后每段时间需要再导一次。
+  en:
+    name: Bank of China
+    steps:
+    - In the Bank of China app, search for 交易流水打印 (statement printing) on the home screen and tap 立即申请 (apply).
+    - Choose the debit card and the period (start with the last month to check), enter the email that receives it, and submit.
+    - The password that opens the file is shown under 申请记录 (application history).
+    - Download the PDF from the email and drop it into Keel. The first time Keel asks for the password and can remember it for later files from the same bank.
+    note: Keel reads the transaction table in the PDF and checks it against the running balance. It has not been verified against a real export yet. Bank of China offers no automatic sync for individuals, so export again for each new period.
+- id: changjiang
+  name: 长江证券
+  kind: broker
+  importers: []
+  export_url: https://www.95579.com/
+  steps_verified: false
+  steps:
+  - 在长江e号 App 进入「交易 → 查询 → 对账单」，选时间范围后导出 PDF。
+  - 暂时没有专门读取长江证券对账单的格式。可以让 Claude、Codex 等 AI 助手用 Keel 的技能把 PDF 整理成 Keel 能导入、能核对的格式。
+  - 也可以把一份对账单交给开发者，补上专门的读取支持。
+  supported: false
+  note: 国内券商没有给个人用的连接接口，只能导出对账单。银证转账会和银行那边的转账配对，不算收支。
+  en:
+    name: Changjiang Securities
+    steps:
+    - In the 长江e号 app go to 交易 → 查询 → 对账单 (statement), choose the period and export the PDF.
+    - Keel has no dedicated reader for Changjiang statements yet. An AI assistant such as Claude or Codex can turn the PDF into lines Keel imports and checks, using Keel's skill.
+    - Or share one statement with the developer so dedicated support can be added.
+    note: Chinese brokers offer no connection for individuals, only exported statements. Transfers between the bank and the brokerage pair with the bank side and are not counted as income or spending.
 - id: okx
   name: OKX
   kind: crypto

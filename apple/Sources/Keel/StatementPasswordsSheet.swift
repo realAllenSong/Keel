@@ -12,7 +12,7 @@ struct StatementPasswordsSheet: View {
     @State private var error: String?
     @State private var result: StatementPasswordResult?
     private var providers: [String] {
-        let named = ["alipay", "wechat", "cmb", "ningbo"]
+        let named = ["alipay", "wechat", "cmb", "ningbo", "boc"]
         return statuses.contains { $0.provider == "other" && $0.configured } ? named + ["other"] : named
     }
 
@@ -69,6 +69,7 @@ struct StatementPasswordsSheet: View {
         case "wechat": return L("微信支付")
         case "cmb": return L("招商银行")
         case "ningbo": return L("宁波银行")
+        case "boc": return L("中国银行")
         default: return L("其他银行账单")
         }
     }

@@ -14,7 +14,11 @@ from pf.importers.brokers import (
     IbkrImporter,
     SchwabImporter,
 )
-from pf.importers.cn_banks import ChinaMerchantsBankImporter, NingboBankImporter
+from pf.importers.cn_banks import (
+    BankOfChinaImporter,
+    ChinaMerchantsBankImporter,
+    NingboBankImporter,
+)
 from pf.importers.cn_wallets import AlipayImporter, WeChatImporter
 from pf.importers.connector_json import ConnectorImporter
 from pf.importers.generic_csv import GenericCsvImporter, Profile, load_profiles
@@ -35,6 +39,7 @@ def all_importers(conn: Connection | None = None) -> list[Importer]:
         IbkrImporter(),
         IbkrHistoryImporter(),
         ChinaMerchantsBankImporter(),
+        BankOfChinaImporter(),
         NingboBankImporter(),
         OkxImporter(),
     ]

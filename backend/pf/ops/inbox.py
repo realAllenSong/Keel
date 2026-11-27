@@ -13,7 +13,7 @@ from sqlalchemy import text
 
 from pf.db import make_engine, migrate
 from pf.i18n import tr
-from pf.importers.archive import is_zip, statement_zip
+from pf.importers.archive import is_locked, statement_zip
 from pf.importers.base import ImportError_
 from pf.importers.preview import looks_like_statement
 from pf.importers.registry import detect
@@ -110,13 +110,13 @@ def _process(directory: Path, *, owned: bool, wait_settle: bool) -> InboxResult:
                 if wait_settle and (not _settled(f) or sha256_file(f) != digest):
                     continue
                 try:
-                    # Only zips holding exactly one statement file (支付宝 / 微信 exports).
+                    # Only zips holding exactly one statement file (支付宝 / 微信), or a locked bank PDF.
                     recognized = (
-                        statement_zip(f) is not None if is_zip(f) else bool(detect(f, conn))
+                        statement_zip(f) is not None if is_locked(f) else bool(detect(f, conn))
                     )
                 except ImportError_:
                     recognized = False
-                if not recognized and (is_zip(f) or not looks_like_statement(f)):
+                if not recognized and (is_locked(f) or not looks_like_statement(f)):
                     if owned:
                         raise ImportError_(f"{f.name}: no importer recognises this file")
                     outcome = "ignored"

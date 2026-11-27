@@ -16,7 +16,7 @@ from pathlib import Path
 from sqlalchemy import Connection, text
 
 from pf.i18n import tr
-from pf.importers.archive import extract_statement, is_zip, statement_zip
+from pf.importers.archive import extract_statement, is_locked, statement_zip
 from pf.importers.archive_passwords import ArchivePasswords, provider_for_member
 from pf.importers.base import ImportError_, ParsedStatement
 from pf.importers.preview import StatementPreview, build_preview
@@ -77,7 +77,7 @@ def import_file(
     if conn.execute(text("SELECT 1 FROM import_files WHERE sha256 = :h"), {"h": digest}).first():
         report.status = "already_imported"
         return report
-    if is_zip(path):
+    if is_locked(path):
         return _import_archive(conn, path, digest, report, account=account, password=password)
 
     pending = conn.execute(
@@ -353,7 +353,9 @@ def _import_archive(
     provider = provider_for_member(member)
     if locked and not password:
         # Probe locally before any ledger writes. Failed saved codes leave the file pending.
-        for candidate in ArchivePasswords.candidates(provider):
+        # An unrecognised name (a bank's attachment may carry no bank name) tries every saved code.
+        providers = [provider] if provider != "other" else list(ArchivePasswords.providers())
+        for candidate in (c for p in providers for c in ArchivePasswords.candidates(p)):
             with tempfile.TemporaryDirectory() as probe:
                 try:
                     extract_statement(path, Path(probe), candidate)
@@ -367,6 +369,7 @@ def _import_archive(
             "wechat": "WeChat",
             "cmb": "China Merchants Bank",
             "ningbo": "Bank of Ningbo",
+            "boc": "Bank of China",
         }.get(provider)
         dest = get_settings().data_dir / "pending" / f"{digest}.zip"
         dest.parent.mkdir(parents=True, exist_ok=True)

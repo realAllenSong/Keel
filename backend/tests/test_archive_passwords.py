@@ -26,6 +26,7 @@ def test_status_lists_unconfigured_providers_without_creating_storage(secrets_fi
         {"provider": "wechat", "configured": False, "count": 0, "updated_at": None},
         {"provider": "cmb", "configured": False, "count": 0, "updated_at": None},
         {"provider": "ningbo", "configured": False, "count": 0, "updated_at": None},
+        {"provider": "boc", "configured": False, "count": 0, "updated_at": None},
         {"provider": "other", "configured": False, "count": 0, "updated_at": None},
     ]
     assert ArchivePasswords.candidates("alipay") == []

@@ -1119,6 +1119,7 @@ extension L10n {
         "邮箱收取账单附件，也可以下载微信支付发来的官方账单链接。每次仍在原 App 申请账单。": "Mailbox collects statement attachments and downloads official WeChat Pay statement links. Request each statement in its original app.",
         "招商银行": "China Merchants Bank",
         "宁波银行": "Bank of Ningbo",
+        "中国银行": "Bank of China",
         "其他银行账单": "Other bank statements",
         "已计入你填写的合格逐项扣除、协定免税额及 FICA 选项；其他抵免、雇员医保和州工资保险扣款未计入。纽约市学校税抵免超过市税的可退款部分不计入到手收入。": "Includes your qualified itemized deductions, treaty exemption and FICA selection. Other credits, health premiums and state payroll insurance are excluded. Refundable NYC school credits exceeding city tax are excluded from take-home.",
         "{a} 到 {b} · 已入账收支 · {c}": "{a} to {b} · Posted income and expenses · {c}",
