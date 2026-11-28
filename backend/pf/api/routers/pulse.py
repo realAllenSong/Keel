@@ -169,3 +169,12 @@ def get_cashline(
         )
         for d in days
     ]
+
+
+@router.get("/in-flight")
+def get_in_flight(conn: Conn, currency: ReportCurrency = "USD") -> dict:
+    """What the banks show but have not posted: pending lines and money on its way in. Shown
+    beside the books, never counted in them (pf/ledger/in_flight.py)."""
+    from pf.ledger.in_flight import as_dict, in_flight
+
+    return as_dict(in_flight(conn, currency))

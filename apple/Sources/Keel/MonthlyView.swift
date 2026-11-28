@@ -48,6 +48,7 @@ struct MonthlyAssets: View {
     let month: String
     @State private var data = Loader<BalanceSheet>()
     @State private var showing = false
+    @State private var inFlight: InFlight?
 
     private var date: String { ReportingPeriod.end(of: month, through: model.today) }
 
@@ -68,6 +69,11 @@ struct MonthlyAssets: View {
                 Text(L("截至 {d}", ["d": Format.day(b.date)])).font(.ui(11)).foregroundStyle(Theme.muted)
                 Hairline()
                 balanceRow(L("资产合计"), totals: NativeBalances.total(assets))
+                if b.date == model.today, let f = inFlight, f.incoming.value > 0 {
+                    // The bank's available balance is higher than what it has posted: not counted.
+                    Text(L("另有 {a} 已到账，银行还没入账，未计入", ["a": Format.money(f.incoming, currency: f.currency, digits: 2)]))
+                        .font(.ui(11.5)).foregroundStyle(Theme.inflow)
+                }
                 ForEach(AssetsView.order, id: \.self) { key in
                     let lines = assets.filter { AssetsView.classKey($0.assetClass ?? "other") == key }
                     if !lines.isEmpty {
@@ -85,6 +91,7 @@ struct MonthlyAssets: View {
         .frame(width: 380, alignment: .topLeading).flatSection()
         .task(id: "\(model.revision)|\(date)|\(currency)") { [date, currency] in
             await data.load { try await $0.balanceSheet(date: date, currency: currency) }
+            inFlight = date == model.today ? try? await model.api?.inFlight(currency: currency) : nil
         }
         .sheet(isPresented: $showing) { AssetDetailsSheet(month: month).environment(model) }
     }

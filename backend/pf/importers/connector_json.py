@@ -117,6 +117,10 @@ class ConnectorImporter:
             holdings=_holdings(doc),
             holdings_as_of=_holdings_day(doc),
             trades=list(doc.get("trades") or []),
+            bank_pending=doc.get("pending"),
+            bank_current=Decimal(doc["current"]) if doc.get("current") else None,
+            bank_available=Decimal(doc["available"]) if doc.get("available") else None,
+            in_flight_as_of=doc.get("fetched_at"),
         )
 
 

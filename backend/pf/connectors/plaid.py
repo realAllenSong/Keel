@@ -9,6 +9,10 @@ arrives again once posted) and /accounts/get for balances. Plaid amounts are pos
 leaves the account, for deposit accounts and cards alike, so the ledger amount is -amount.
 A balance becomes a balance assertion only when the account has no pending lines: whether
 Plaid's current balance already includes them differs by bank.
+
+Pending lines are never booked. Each sync also asks /transactions/get for the last 30 days and
+reports the lines still pending, with each cash account's current and available balance, so the
+app can show money in flight beside the books (pf/ledger/in_flight.py).
 """
 
 from __future__ import annotations
@@ -30,6 +34,10 @@ REAUTH_CODES = {
     "INVALID_API_KEYS",
 }
 KIND = {"depository": "Assets", "credit": "Liabilities", "loan": "Liabilities"}
+PENDING_DAYS = 30
+TRANSFERS = {"TRANSFER_IN", "TRANSFER_OUT", "LOAN_PAYMENTS"}
+# Merchants that authorise more than they finally charge, or release the hold: a deposit.
+HOLDS = {"TRAVEL_LODGING", "TRAVEL_RENTAL_CARS", "TRANSPORTATION_GAS"}
 
 
 class PlaidApi:
@@ -163,6 +171,18 @@ class Plaid:
                         "category_hint": pfc.get("detailed") or pfc.get("primary"),
                     }
                 )
+            in_flight = _pending_lines(api, item["access_token"], today)
+            for a in accounts:
+                st = by_id.get(a["account_id"])
+                if st is None:
+                    continue
+                if in_flight is not None:
+                    st.pending = in_flight.get(a["account_id"], [])
+                bal = a.get("balances") or {}
+                cur, avail = bal.get("current"), bal.get("available")
+                if st.type == "Assets" and cur is not None and avail is not None:
+                    st.current = str(Decimal(str(cur)))
+                    st.available = str(Decimal(str(avail)))
             for a in accounts:
                 st = by_id.get(a["account_id"])
                 current = (a.get("balances") or {}).get("current")
@@ -174,3 +194,53 @@ class Plaid:
                 )
             out += by_id.values()
         return out
+
+
+def _pending_lines(api: PlaidApi, token: str, today: str) -> dict[str, list[dict[str, Any]]] | None:
+    """Lines the bank still shows as pending, by Plaid account id; None if Plaid can't say now
+    (the sync itself never fails over what is only shown, never booked)."""
+    start = (dt.date.fromisoformat(today) - dt.timedelta(days=PENDING_DAYS)).isoformat()
+    out: dict[str, list[dict[str, Any]]] = {}
+    offset = 0
+    try:
+        while True:
+            res = api.call(
+                "/transactions/get",
+                {
+                    "access_token": token,
+                    "start_date": start,
+                    "end_date": today,
+                    "options": {
+                        "count": 500,
+                        "offset": offset,
+                        "include_personal_finance_category": True,
+                    },
+                },
+            )
+            page = res.get("transactions") or []
+            for t in page:
+                if t.get("pending"):
+                    out.setdefault(t.get("account_id", ""), []).append(_pending_line(t))
+            offset += len(page)
+            if not page or offset >= int(res.get("total_transactions") or 0):
+                break
+    except (ConnectorError, KeyError, ValueError, TypeError):
+        return None
+    return out
+
+
+def _pending_line(t: dict[str, Any]) -> dict[str, Any]:
+    amount = -Decimal(str(t["amount"]))
+    pfc = t.get("personal_finance_category") or {}
+    primary, detailed = pfc.get("primary") or "", pfc.get("detailed") or ""
+    kind = "transfer" if primary in TRANSFERS else ("income" if amount > 0 else "spend")
+    return {
+        "id": t["transaction_id"],
+        "date": t.get("authorized_date") or t["date"],
+        "amount": str(amount),
+        "description": t.get("original_description") or t.get("name") or "",
+        "payee": t.get("merchant_name"),
+        "category_hint": detailed or primary or None,
+        "kind": kind,
+        "hold": kind == "spend" and detailed in HOLDS,
+    }

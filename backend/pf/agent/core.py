@@ -89,6 +89,8 @@ def status() -> dict[str, Any]:
             {"account": _short(d["account"]), "date": d["date"], "diff": d["diff"]}
             for d in _call("GET", "/reconcile", params={"waiting": True})
         ],
+        # Shown, never booked: pending card lines and money the bank has not posted yet.
+        "in_flight": _in_flight_brief(),
         "connections": [
             {
                 "source": c["source"],
@@ -98,6 +100,34 @@ def status() -> dict[str, Any]:
             }
             for c in _call("GET", "/connections")
             if c["connected"]
+        ],
+    }
+
+
+def _in_flight_brief() -> dict[str, Any]:
+    f = _call("GET", "/in-flight")
+    return {
+        "pending_spend": f["spend"],
+        "pending_lines": [
+            {
+                "account": _short(x["account"]),
+                "date": x["date"],
+                "what": x["payee"] or x["description"],
+                "amount": x["amount"],
+                "currency": x["currency"],
+                "kind": x["kind"],
+                "hold": x["hold"],
+            }
+            for x in f["lines"]
+        ],
+        "not_yet_posted": [
+            {
+                "account": _short(a["account"]),
+                "available": a["available"],
+                "current": a["current"],
+                "difference": a["difference"],
+            }
+            for a in f["accounts"]
         ],
     }
 

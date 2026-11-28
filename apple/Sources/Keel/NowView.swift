@@ -10,6 +10,7 @@ struct NowView: View {
     @State private var home = Loader<Home>("now.home")
     @State private var pulse = Loader<Pulse>("pulse")
     @State private var lines: [Txn] = []
+    @State private var inFlight: InFlight?
 
     var body: some View {
         Page(width: 1232) {
@@ -42,7 +43,10 @@ struct NowView: View {
                     table = try await api.cashflow(start: month, end: month, depth: 2, currency: currency, endDate: asOf)
                     items = (try? await api.transactions(month: month, currency: currency))?.items ?? []
                 }
+                // Pending bank lines belong to today's month only; never counted in its totals.
+                let pending = p.month == model.currentMonth ? try? await api.inFlight(currency: currency) : nil
                 try Task.checkCancellation()
+                inFlight = pending
                 pulse.set(p)
                 if let table { flow.set(table) }
                 lines = items.filter { $0.kind == "normal" && ($0.counterAccount ?? "").hasPrefix("Expenses:") }
@@ -72,6 +76,9 @@ struct NowView: View {
                     Text(note).font(.ui(14)).foregroundStyle(Theme.muted)
                         .fixedSize(horizontal: false, vertical: true)
                         .padding(.top, 10)
+                }
+                if let f = inFlight, month == model.currentMonth, let title = f.spendTitle(currency: f.currency) {
+                    InFlightRow(title: title, lines: f.spendLines).padding(.top, 14)
                 }
                 if !missing.isEmpty {
                     ErrorLine(message: L("{c} 缺少汇率，完整收支总额暂不可用；明细仍可查看原币。", ["c": missing.joined(separator: ", ")]))

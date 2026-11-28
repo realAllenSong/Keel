@@ -124,6 +124,11 @@ class AccountStatement:
     holdings_as_of: str | None = None  # the day the positions are for
     # Buys, sells, reinvestments, splits, option events (see pf/ledger/portfolio.py).
     trades: list[dict[str, Any]] = field(default_factory=list)
+    # In flight, never booked (pf/ledger/in_flight.py): the bank's pending lines right now
+    # (None when the source cannot say), and a cash account's current and available balance.
+    pending: list[dict[str, Any]] | None = None
+    current: str | None = None
+    available: str | None = None
 
     def doc(self, fetched_at: str) -> dict[str, Any]:
         return {"keel_connector": 1, "fetched_at": fetched_at, **self.__dict__}

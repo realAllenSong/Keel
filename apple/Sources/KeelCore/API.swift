@@ -109,6 +109,11 @@ public struct API: Sendable {
     public func pulse(currency: String = "USD") async throws -> Pulse {
         try await get("api/pulse", ["currency": currency])
     }
+    /// What the banks show but have not posted: pending lines and money on its way in.
+    /// Shown beside the books, never counted in them.
+    public func inFlight(currency: String = "USD") async throws -> InFlight {
+        try await get("api/in-flight", ["currency": currency])
+    }
     /// Dates are yyyy-MM-dd, both ends included.
     public func cashline(start: String, end: String, currency: String? = nil) async throws -> [CashFlowDay] {
         try await get("api/cashline", ["start": start, "end": end, "currency": currency])

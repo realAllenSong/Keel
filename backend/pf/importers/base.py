@@ -48,6 +48,12 @@ class ParsedStatement:
     holdings: list[dict[str, Any]] | None = None
     holdings_as_of: dt.date | None = None
     trades: list[dict[str, Any]] = field(default_factory=list)
+    # In flight, shown and never booked (pf/ledger/in_flight.py): the bank's pending lines as of
+    # `in_flight_as_of` (None = not reported), and a cash account's current / available balance.
+    bank_pending: list[dict[str, Any]] | None = None
+    bank_current: Decimal | None = None
+    bank_available: Decimal | None = None
+    in_flight_as_of: str | None = None
 
     @property
     def period(self) -> tuple[dt.date, dt.date] | None:

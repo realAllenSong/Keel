@@ -207,6 +207,10 @@ def import_file(
         from pf.ledger.portfolio import record
 
         record(conn, acc_id, file_id, stmt)  # positions and trades, beside the ledger
+    if stmt.in_flight_as_of is not None:
+        from pf.ledger.in_flight import record as record_in_flight
+
+        record_in_flight(conn, acc_id, stmt)  # pending lines and available balance, never booked
 
     opening = refresh_opening_balance(conn, account)
     if opening is not None:

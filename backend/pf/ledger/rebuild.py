@@ -57,7 +57,8 @@ def rebuild(conn: Connection) -> list[ImportReport]:
     conn.execute(text(f"DELETE FROM transactions WHERE {in_derived}"))
     conn.execute(text("DROP TABLE temp._derived"))
     conn.execute(text("DELETE FROM balance_assertions WHERE import_file_id IS NOT NULL"))
-    for table in ("trades", "holdings", "holding_snapshots"):  # refilled by the replay
+    # Refilled by the replay.
+    for table in ("trades", "holdings", "holding_snapshots", "bank_pending", "bank_available"):
         conn.execute(text(f"DELETE FROM {table}"))
     conn.execute(text("DELETE FROM import_files"))
 

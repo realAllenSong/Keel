@@ -283,6 +283,48 @@ def plaid_handler() -> Callable[[httpx.Request], httpx.Response]:
                     "has_more": False,
                 },
             )
+        if req.url.path == "/transactions/get":
+            return httpx.Response(
+                200,
+                json={
+                    "transactions": [
+                        {
+                            "transaction_id": "k2",
+                            "account_id": "chk",
+                            "amount": 9.99,
+                            "date": "2026-10-30",
+                            "name": "NETFLIX",
+                            "pending": True,
+                            "personal_finance_category": {
+                                "primary": "ENTERTAINMENT",
+                                "detailed": "ENTERTAINMENT_TV_AND_MOVIES",
+                            },
+                        },
+                        {
+                            "transaction_id": "h1",
+                            "account_id": "card",
+                            "amount": 200,
+                            "date": "2026-10-31",
+                            "name": "MARRIOTT HOLD",
+                            "merchant_name": "Marriott",
+                            "pending": True,
+                            "personal_finance_category": {
+                                "primary": "TRAVEL",
+                                "detailed": "TRAVEL_LODGING",
+                            },
+                        },
+                        {
+                            "transaction_id": "c1",
+                            "account_id": "card",
+                            "amount": 12.5,
+                            "date": "2026-10-20",
+                            "name": "SHAKE SHACK",
+                            "pending": False,
+                        },
+                    ],
+                    "total_transactions": 3,
+                },
+            )
         if req.url.path == "/accounts/get":
             return httpx.Response(
                 200,
@@ -300,7 +342,11 @@ def plaid_handler() -> Callable[[httpx.Request], httpx.Response]:
                             "name": "Total Checking",
                             "mask": "0102",
                             "type": "depository",
-                            "balances": {"current": 460, "iso_currency_code": "USD"},
+                            "balances": {
+                                "current": 460,
+                                "available": 1460,
+                                "iso_currency_code": "USD",
+                            },
                         },
                         {
                             "account_id": "inv",

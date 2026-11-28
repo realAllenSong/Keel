@@ -14,6 +14,7 @@ struct AssetsView: View {
     @State private var accounts = Loader<[LedgerAccount]>("assets.accounts")
     @State private var statements: (month: String, accounts: Set<String>)?
     @State private var adding = false
+    @State private var inFlight: InFlight?
 
     private var balanceSheet: BalanceSheet? {
         guard let bs = sheet.value, bs.date == date else { return nil }
@@ -45,7 +46,9 @@ struct AssetsView: View {
                                     key: group.key, rows: group.rows, date: bs.date,
                                     observations: bs.observedOn ?? [:],
                                     commodity: nativeCommodity,
-                                    statement: statements?.month == periodMonth ? statements?.accounts : nil
+                                    statement: statements?.month == periodMonth ? statements?.accounts : nil,
+                                    // Today's bank picture only: an earlier month-end has no "not yet posted".
+                                    inFlight: bs.date == model.today ? inFlight : nil
                                 )
                             }
                         }
@@ -100,6 +103,9 @@ struct AssetsView: View {
                 }
             }
             _ = await c
+            if let api = model.api, !Task.isCancelled {
+                inFlight = try? await api.inFlight(currency: currency)
+            }
             if let api = model.api, !Task.isCancelled {
                 async let files = try? api.imports()
                 async let list = try? api.checklist(month: month)
@@ -233,6 +239,7 @@ private struct AssetGroup: View {
     let observations: [String: String]
     let commodity: (String) -> String?
     let statement: Set<String>?
+    var inFlight: InFlight?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -250,7 +257,8 @@ private struct AssetGroup: View {
             ForEach(rows) { line in
                 AccountRow(line: line, date: date,
                            observedOn: observations[line.account],
-                           commodity: commodity(line.account), statement: statement)
+                           commodity: commodity(line.account), statement: statement,
+                           inFlight: inFlight?.accounts.first { $0.account == line.account })
             }
         }
     }
@@ -308,6 +316,7 @@ private struct AccountRow: View {
     let observedOn: String?
     let commodity: String?
     let statement: Set<String>?
+    var inFlight: InFlight.Account?
     @State private var editing = false
 
     var body: some View {
@@ -324,6 +333,13 @@ private struct AccountRow: View {
                     Text(accountTitle).font(.ui(13.5)).foregroundStyle(Theme.ink)
                     if let note = line.note, !note.isEmpty {
                         Text(note).font(.ui(11)).foregroundStyle(Theme.muted)
+                    }
+                    if let f = inFlight {
+                        // The bank's own picture, beside the books: never counted in them.
+                        Text(f.difference.isNegative
+                             ? L("可用 {a}，有 {d} 还在待扣或被暂扣", ["a": Format.money(f.available, currency: f.currency, digits: 2), "d": Format.money(abs(f.difference.value), currency: f.currency, digits: 2)])
+                             : L("可用 {a}，其中 {d} 银行还没入账", ["a": Format.money(f.available, currency: f.currency, digits: 2), "d": Format.money(f.difference, currency: f.currency, digits: 2)]))
+                            .font(.ui(11)).foregroundStyle(f.difference.isNegative ? Theme.muted : Theme.inflow)
                     }
                     if let observedOn {
                         Text(L("余额记录于 {d}", ["d": Format.day(observedOn)]))

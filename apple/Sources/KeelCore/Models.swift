@@ -21,6 +21,46 @@ public struct Money: Codable, Hashable, Sendable, CustomStringConvertible {
     public var description: String { raw }
 }
 
+// MARK: - in flight (shown, never booked)
+
+public struct InFlight: Decodable, Sendable {
+    public struct Line: Decodable, Sendable, Identifiable, Hashable {
+        public let account: String
+        public let date: String
+        public let amount: Money  // native, money out negative
+        public let currency: String
+        public let description: String
+        public let payee: String?
+        public let kind: String  // spend | income | transfer
+        public let hold: Bool
+        public let shown: Money?  // in the page's currency
+        public var id: String { "\(account)|\(date)|\(amount.raw)|\(description)" }
+        public var what: String {
+            let p = payee?.trimmingCharacters(in: .whitespaces) ?? ""
+            return p.isEmpty ? description : p
+        }
+    }
+    public struct Account: Decodable, Sendable, Identifiable, Hashable {
+        public let account: String
+        public let currency: String
+        public let current: Money
+        public let available: Money
+        public let difference: Money  // + on its way in, - held
+        public let asOf: String
+        public var id: String { account }
+    }
+    public let currency: String
+    public let lines: [Line]
+    public let accounts: [Account]
+    public let spend: Money
+    public let spendCount: Int
+    public let holds: Int
+    public let incoming: Money
+    public let missingFx: [String]
+
+    public var spendLines: [Line] { lines.filter { $0.kind == "spend" } }
+}
+
 // MARK: - home
 
 public struct Home: Decodable, Sendable {

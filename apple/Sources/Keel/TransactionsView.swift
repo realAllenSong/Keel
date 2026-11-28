@@ -15,6 +15,7 @@ struct TransactionsView: View {
     @State private var deleting: Txn?
     @State private var tagTotals: [TagTotal] = []
     @State private var tag: String?
+    @State private var inFlight: InFlight?
     @AppStorage("keel.netWorthCurrency") private var currency = "USD"
 
     var body: some View {
@@ -63,6 +64,12 @@ struct TransactionsView: View {
                     if let a = model.txnAccount { FilterChip(text: L("账户") + L("：") + Format.account(a)) { model.txnAccount = nil } }
                 }
             }
+            if let f = inFlight, !f.lines.isEmpty, model.txnMonth == nil, model.txnCategory == nil, tag == nil {
+                InFlightRow(
+                    title: L("银行还有 {n} 笔没入账，入账后会自动出现在下面，不计入任何合计", ["n": f.lines.count]),
+                    lines: model.txnAccount.map { a in f.lines.filter { $0.account == a } } ?? f.lines
+                )
+            }
             if model.txnStatus != "confirmed" {
                 ReviewGroups(categories: categories)
             }
@@ -108,6 +115,7 @@ struct TransactionsView: View {
         }
         .task(id: "\(model.revision)|\(currency)") {
             guard let api = model.api else { return }
+            inFlight = try? await api.inFlight(currency: currency)
             if let list = try? await api.categories() { categories = list }
             if let totals = try? await api.tagTotals(currency: currency) {
                 tagTotals = totals
